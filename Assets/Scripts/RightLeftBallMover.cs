@@ -22,16 +22,15 @@ public class RightLeftBallMover : PlayerMover
     private void Move(bool isRightMovement)
     {
         float xComponent = _speed * Time.deltaTime;
-        Vector3 direction = new Vector3(xComponent, 0, 0);
+        Vector3 direction;
 
-        if (isRightMovement)
+        if (isRightMovement == false)
         {
-            transform.position += direction;
+            xComponent = -xComponent;
         }
-        else
-        {
-            transform.position -= direction;
-        }
+
+        direction = new Vector3(xComponent, 0, 0);
+        transform.position += direction;
 
         Moved?.Invoke(direction);
     }
