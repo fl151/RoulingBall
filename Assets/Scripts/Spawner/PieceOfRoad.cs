@@ -10,7 +10,7 @@ public class PieceOfRoad : MonoBehaviour
 
     public Transform EndPoint => _endPoint;
 
-    private void Start()
+    private void Awake()
     {
         _endPoint = GetComponentInChildren<EndPoint>().transform;
 
