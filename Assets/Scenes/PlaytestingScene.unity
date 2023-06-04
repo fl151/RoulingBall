@@ -294,14 +294,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.28818136, y: -0.08152016, z: 0.024630995, w: 0.9537816}
-  m_LocalPosition: {x: -0.06, y: 3.97, z: -4.26}
+  m_LocalRotation: {x: 0.3497559, y: -0.08295274, z: 0.019263392, w: 0.93296224}
+  m_LocalPosition: {x: -0.06, y: 3.97, z: -3.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 33.624, y: -9.77, z: 0}
+  m_LocalEulerAnglesHint: {x: 40.981, y: -10.788, z: -1.676}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,6 +474,37 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1654555793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1654555794}
+  m_Layer: 0
+  m_Name: RoadDecoretionSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1654555794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654555793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.97906816, y: 0.9235253, z: 2.421885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2130499307
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,3 +553,4 @@ MonoBehaviour:
   _prefabsPoad:
   - {fileID: 3605995302469197489, guid: a5b9697cb7472d24c8dfa26c34077f00, type: 3}
   _endPieceRoad: {fileID: -1810292330431331080, guid: b2daa25648d6b594f947cc2b901f3340, type: 3}
+  _afterEndPiece: {fileID: 0}

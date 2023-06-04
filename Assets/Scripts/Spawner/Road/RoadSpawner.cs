@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoadSpawner : MonoBehaviour
 {
     [SerializeField] private PieceOfRoad _startPieceRoad;
     [SerializeField] private PieceOfRoad[] _prefabsPoad;
     [SerializeField] private PieceOfRoad _endPieceRoad;
+    [SerializeField] private PieceOfRoad _afterEndPiece;
 
-    private int countPiecesRoad = 5;
+    public event UnityAction<PieceOfRoad> Spawned; 
+
+    private const int _countPiecesRoad = 5;
+    private const int _countPiecesRoadAfterFinish = 10;
 
     private PieceOfRoad _lastPiece;
     private PieceOfRoad _currentPiece;
@@ -17,12 +22,17 @@ public class RoadSpawner : MonoBehaviour
     {
         SpawnPiece(_startPieceRoad);
 
-        for (int i = 0; i < countPiecesRoad; i++)
+        for (int i = 0; i < _countPiecesRoad; i++)
         {
             SpawnPiece(GetRandomPiece(_prefabsPoad));
         }
 
         SpawnPiece(_endPieceRoad);
+
+        for (int i = 0; i < _countPiecesRoadAfterFinish; i++)
+        {
+            SpawnPiece(_afterEndPiece);
+        }
     }
 
     private PieceOfRoad GetRandomPiece(PieceOfRoad[] prefabs)
@@ -43,7 +53,7 @@ public class RoadSpawner : MonoBehaviour
             _currentPiece.transform.position = _lastPiece.EndPoint.position;
 
         _lastPiece = _currentPiece;
+
+        Spawned?.Invoke(_currentPiece);
     }
-
-
 }
