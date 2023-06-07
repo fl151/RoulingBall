@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6331416266411382310}
+  - component: {fileID: 8006831211449719280}
   m_Layer: 0
   m_Name: BarrierPoint 1
   m_TagString: Untagged
@@ -31,6 +32,18 @@ Transform:
   m_Father: {fileID: 7701895514182176270}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8006831211449719280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453515492585748944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00757a46dd10cc41adb6646248fe022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3967612947793153355
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 248674924233681768}
+  - component: {fileID: 4342820482986638081}
   m_Layer: 0
   m_Name: BarrierPoint 2
   m_TagString: Untagged
@@ -104,13 +118,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5156971096590306296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0.17, z: 1}
+  m_LocalPosition: {x: -1.2, y: 0.17, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7701895514182176270}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4342820482986638081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5156971096590306296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00757a46dd10cc41adb6646248fe022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5158322538916285715
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,6 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 214265266316552067}
+  - component: {fileID: 6015897181844268571}
   m_Layer: 0
   m_Name: BarrierPoint 3
   m_TagString: Untagged
@@ -179,13 +206,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7299954296950805915}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.17, z: 1}
+  m_LocalPosition: {x: 1.2, y: 0.17, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7701895514182176270}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6015897181844268571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7299954296950805915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00757a46dd10cc41adb6646248fe022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3119870512745094130
 PrefabInstance:
   m_ObjectHideFlags: 0

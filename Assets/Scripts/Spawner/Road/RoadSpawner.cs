@@ -16,7 +16,6 @@ public class RoadSpawner : MonoBehaviour
     private const int _countPiecesRoadAfterFinish = 10;
 
     private PieceOfRoad _lastPiece;
-    private PieceOfRoad _currentPiece;
 
     private void Start()
     {
@@ -47,13 +46,13 @@ public class RoadSpawner : MonoBehaviour
 
     private void SpawnPiece(PieceOfRoad prefab)
     {
-        _currentPiece = Instantiate(prefab, transform);
+        var currentPiece = Instantiate(prefab, transform);
 
         if (_lastPiece != null)    
-            _currentPiece.transform.position = _lastPiece.EndPoint.position;
+            currentPiece.transform.position = _lastPiece.EndPoint.position;
 
-        _lastPiece = _currentPiece;
+        _lastPiece = currentPiece;  
 
-        Spawned?.Invoke(_currentPiece);
+        Spawned?.Invoke(currentPiece);
     }
 }
