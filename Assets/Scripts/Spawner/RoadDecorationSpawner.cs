@@ -1,11 +1,12 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class RoadDecorationSpawner : MonoBehaviour
 {
     [SerializeField] private RoadSpawner _spawner;
-
     [SerializeField] private Barrier[] _barrierPrefabs;
+    [SerializeField] private Color[] _colorsAfterFinish;
+
+    private int _indexCurrentPieceAfterFinish;
 
     private void OnEnable()
     {
@@ -31,7 +32,15 @@ public class RoadDecorationSpawner : MonoBehaviour
 
     private void DecorateAfterFinish(PieceAfterFinish piece)
     {
+        Color color = _colorsAfterFinish[_indexCurrentPieceAfterFinish % _colorsAfterFinish.Length];
 
+        piece.GetComponent<ColorChanger>().SetColor(color);
+
+        int text = (_indexCurrentPieceAfterFinish + 1) * 10;
+
+        piece.GetComponent<TextChanger>().SetText(text + "");
+
+        _indexCurrentPieceAfterFinish++;
     }
 
     private void DecorateRoad(PieceOfRoad piece)
@@ -53,13 +62,6 @@ public class RoadDecorationSpawner : MonoBehaviour
         if (length == 0)
             return null;
 
-        return barriers[GetRandomIndex(length)];
-    }
-
-    private int GetRandomIndex(int arrayLength)
-    {
-        int index = Random.Range(0, arrayLength);
-
-        return index;
+        return barriers[Random.Range(0, length)];
     }
 }
