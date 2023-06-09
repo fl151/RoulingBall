@@ -19,7 +19,7 @@ public class RoadDecorationSpawner : MonoBehaviour
 
     private void OnPieceSpawned(PieceOfRoad piece)
     {
-        if(piece is PieceAfterFinish)
+        if (piece is PieceAfterFinish)
         {
             DecorateAfterFinish(piece as PieceAfterFinish);
         }
@@ -38,27 +38,12 @@ public class RoadDecorationSpawner : MonoBehaviour
     {
         BarrierPoint[] barriersPoints = piece.BarrierPoints;
 
-        BarrierPoint barrierPoint = GetRandomPoint(barriersPoints);
-
-        if (barrierPoint != null)
+        foreach (var point in barriersPoints)
         {
             Barrier barrier = GetRandomBarrier(_barrierPrefabs);
 
-            Instantiate(barrier, barrierPoint.transform);
+            Instantiate(barrier, point.transform);
         }
-    }
-
-    private BarrierPoint GetRandomPoint(BarrierPoint[] points)
-    {
-        if (points == null)
-            return null;
-
-        int length = points.Length;
-
-        if (length == 0)
-            return null;
-
-        return points[GetRandomIndex(length)];
     }
 
     private Barrier GetRandomBarrier(Barrier[] barriers)

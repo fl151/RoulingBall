@@ -570,5 +570,7 @@ MonoBehaviour:
   _startPieceRoad: {fileID: -1810292330431331080, guid: 954d60fa27f8243418fe9f5ba415da29, type: 3}
   _prefabsPoad:
   - {fileID: 3605995302469197489, guid: a5b9697cb7472d24c8dfa26c34077f00, type: 3}
+  - {fileID: 3605995302469197489, guid: fe6b7626efd5c974e878ec0a88817d12, type: 3}
+  - {fileID: 3605995302469197489, guid: 579666445b1f767409da1e9fec82da7f, type: 3}
   _endPieceRoad: {fileID: -1810292330431331080, guid: b2daa25648d6b594f947cc2b901f3340, type: 3}
   _afterEndPiece: {fileID: -5116631113969740211, guid: d1e5bcf03ebe3f54eb100bc8d14d599a, type: 3}
