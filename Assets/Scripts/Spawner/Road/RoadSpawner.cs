@@ -39,7 +39,7 @@ public class RoadSpawner : MonoBehaviour
         if (prefabs.Length == 0)
             return null;
 
-        int index = Random.Range(0, prefabs.Length - 1);
+        int index = Random.Range(0, prefabs.Length);
 
         return prefabs[index];
     }
