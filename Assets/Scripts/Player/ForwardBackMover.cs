@@ -6,7 +6,7 @@ public class ForwardBackMover : PlayerMover
 {
     [SerializeField] private float _speed;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.UpArrow))
         {
@@ -19,6 +19,20 @@ public class ForwardBackMover : PlayerMover
         {
             Move(true);
         }
+    }
+
+    public void UpSpeed(float increaseTimes)
+    {
+        float times = GetCorrectTimes(increaseTimes);
+
+        _speed *= times;
+    }
+
+    public void DownSpeed(float decreaseTimes)
+    {
+        float times = GetCorrectTimes(decreaseTimes);
+
+        _speed /= times;
     }
 
     private void Move(bool isForwardMovement)
@@ -37,4 +51,12 @@ public class ForwardBackMover : PlayerMover
         Moved?.Invoke(direction);
     }
 
+    private float GetCorrectTimes(float inputTimes)
+    {
+        if (inputTimes == 0) return 1;
+
+        inputTimes = Mathf.Clamp(inputTimes, 0, 10);
+
+        return inputTimes;
+    }
 }

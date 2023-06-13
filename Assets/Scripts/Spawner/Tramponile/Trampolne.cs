@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class Trampolne : MonoBehaviour
 {
-    private Rigidbody _rb;
+    [SerializeField] private float _speedIncreaseTimese;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent(out ForwardBackMover mover))
         {
-            _rb = mover.GetComponent<Rigidbody>();
-            _rb.isKinematic = false;
-
-            mover.Moved += OnPlayerMoved;
+            mover.UpSpeed(_speedIncreaseTimese);
         }
     }
 
@@ -21,14 +18,7 @@ public class Trampolne : MonoBehaviour
     {
         if (other.TryGetComponent(out ForwardBackMover mover))
         {
-            _rb.isKinematic = true;
-
-            mover.Moved -= OnPlayerMoved;
+            mover.DownSpeed(_speedIncreaseTimese);
         }
-    }
-
-    private void OnPlayerMoved(Vector3 direction)
-    {
-        _rb.transform.position += new Vector3(0, direction.z, 0);
     }
 }
