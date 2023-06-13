@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class RoadDecorationSpawner : MonoBehaviour
+public class BarriersSpawner : MonoBehaviour
 {
     [SerializeField] private RoadSpawner _spawner;
     [SerializeField] private Barrier[] _barrierPrefabs;
     [SerializeField] private Color[] _colorsAfterFinish;
 
     private int _indexCurrentPieceAfterFinish;
+
+    public UnityAction<Barrier> ShortBarrierSpawned;
 
     private void OnEnable()
     {
@@ -49,9 +52,14 @@ public class RoadDecorationSpawner : MonoBehaviour
 
         foreach (var point in barriersPoints)
         {
-            Barrier barrier = GetRandomBarrier(_barrierPrefabs);
+            Barrier barrierPrefab = GetRandomBarrier(_barrierPrefabs);
 
-            Instantiate(barrier, point.transform);
+            Barrier barrier = Instantiate(barrierPrefab, point.transform);
+
+            if (barrier.CanBeJumpedOver)
+            {
+                ShortBarrierSpawned(barrier);
+            }
         }
     }
 
