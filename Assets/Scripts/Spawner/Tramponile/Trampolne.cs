@@ -8,7 +8,7 @@ public class Trampolne : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out ForwardBackMover mover))
+        if(other.TryGetComponent(out ForwardMover mover))
         {
             mover.UpSpeed(_speedIncreaseTimese);
         }
@@ -16,7 +16,7 @@ public class Trampolne : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out ForwardBackMover mover))
+        if (other.TryGetComponent(out ForwardMover mover))
         {
             mover.DownSpeed(_speedIncreaseTimese);
         }

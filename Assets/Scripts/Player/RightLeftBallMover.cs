@@ -6,17 +6,7 @@ public class RightLeftBallMover : PlayerMover
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
-        {
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            Move(false);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            Move(true);
-        }
+        
     }
 
     private void Move(bool isRightMovement)

@@ -2,22 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForwardBackMover : PlayerMover
+public class ForwardMover : PlayerMover
 {
     [SerializeField] private float _speed;
 
+    private bool _isGameStarted = false;
+
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.UpArrow))
+        if (_isGameStarted)
         {
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            Move(false);
-        }
-        else if (Input.GetKey(KeyCode.UpArrow))
-        {
-            Move(true);
+            Move();
         }
     }
 
@@ -35,15 +30,10 @@ public class ForwardBackMover : PlayerMover
         _speed /= times;
     }
 
-    private void Move(bool isForwardMovement)
+    private void Move()
     {
         float zComponent = _speed * Time.deltaTime;
         Vector3 direction;
-
-        if (isForwardMovement == false)
-        {
-            zComponent = -zComponent;
-        }
 
         direction = new Vector3(0, 0, zComponent);
         transform.position += direction;
