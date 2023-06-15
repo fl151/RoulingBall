@@ -6,7 +6,7 @@ public class ForwardMover : PlayerMover
 {
     [SerializeField] private float _speed;
 
-    private bool _isGameStarted = false;
+    private bool _isGameStarted = true;
 
     private void FixedUpdate()
     {

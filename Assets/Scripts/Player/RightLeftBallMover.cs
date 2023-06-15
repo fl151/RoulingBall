@@ -4,25 +4,25 @@ public class RightLeftBallMover : PlayerMover
 {
     [SerializeField] private float _speed;
 
-    private void Update()
+    public void Instance(UserInput input)
     {
-        
+        input.Moving += TryMove;
     }
 
-    private void Move(bool isRightMovement)
+    private void TryMove(Vector3 direction)
     {
-        float xComponent = _speed * Time.deltaTime;
-        Vector3 direction;
+        direction *= _speed * Time.deltaTime;
 
-        if (isRightMovement == false)
+        if(IsValidMoving(direction))
         {
-            xComponent = -xComponent;
+            transform.position += direction;
+
+            Moved?.Invoke(direction);
         }
-
-        direction = new Vector3(xComponent, 0, 0);
-        transform.position += direction;
-
-        Moved?.Invoke(direction);
     }
 
+    private bool IsValidMoving(Vector3 direction)
+    {
+        return (transform.position + direction).x <= 1.6f && (transform.position + direction).x >= -1.6f;
+    } 
 }
