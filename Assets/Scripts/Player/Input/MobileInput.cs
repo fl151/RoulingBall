@@ -9,7 +9,14 @@ public class MobileInput : UserInput, IDragHandler
 
         if (xDelta != 0)
         {
-            Moving.Invoke(new Vector3(xDelta, 0, 0));
+            if(xDelta > 0)
+            {
+                Moving?.Invoke(Vector3.right);
+            }
+            else
+            {
+                Moving?.Invoke(Vector3.left);
+            }
         }
     }
 }

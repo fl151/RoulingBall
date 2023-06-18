@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Agava.WebUtility;
 using UnityEngine;
 
