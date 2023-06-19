@@ -5,18 +5,9 @@ public class MobileInput : UserInput, IDragHandler
 {
     public void OnDrag(PointerEventData eventData)
     {
-        float xDelta = eventData.delta.x;
-
-        if (xDelta != 0)
+        if (eventData.IsPointerMoving())
         {
-            if(xDelta > 0)
-            {
-                Moving?.Invoke(Vector3.right);
-            }
-            else
-            {
-                Moving?.Invoke(Vector3.left);
-            }
+            Moving?.Invoke(new Vector3(eventData.delta.x / 15, 0, 0));
         }
     }
 }
