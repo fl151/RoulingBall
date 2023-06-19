@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrampolileSpawner : MonoBehaviour
@@ -27,7 +25,6 @@ public class TrampolileSpawner : MonoBehaviour
         {
             if((int)Random.Range(0, 1/_chanceTrampolineSpawned) == 0)
             {
-                Debug.Log("");
                 Trampolne trampoline = Instantiate(_prefab);
                 trampoline.transform.position = barrier.transform.position;
             }

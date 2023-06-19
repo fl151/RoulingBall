@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3512914416359446402}
   - component: {fileID: 4493708240856319706}
   - component: {fileID: 3424789983121540653}
-  - component: {fileID: 3446094640266652059}
+  - component: {fileID: 3257351950744719936}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -330,19 +330,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4164252418655170236}
   m_Mesh: {fileID: 0}
---- !u!65 &3446094640266652059
-BoxCollider:
+--- !u!64 &3257351950744719936
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4164252418655170236}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.44043255, y: 0.5309751, z: 0.90556836}
-  m_Center: {x: 0, y: 0.045547366, z: -0.10840428}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &8652060065629303010
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,6 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1422072764347913576}
   - component: {fileID: 7542101735453420517}
+  - component: {fileID: 1205657340246621935}
   m_Layer: 0
   m_Name: Trampoline 1
   m_TagString: Untagged
@@ -388,3 +390,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c327fb89d0cde68459061073141dc3c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speedIncreaseTimese: 1.5
+--- !u!65 &1205657340246621935
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8652060065629303010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.5318368, z: 0.95751023}
+  m_Center: {x: 0, y: 0.2340816, z: -0.7544553}

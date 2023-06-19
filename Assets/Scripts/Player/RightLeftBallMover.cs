@@ -4,35 +4,25 @@ public class RightLeftBallMover : PlayerMover
 {
     [SerializeField] private float _speed;
 
-    private void Update()
+    public void Instance(UserInput input)
     {
-        if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
+        input.Moving += TryMove;
+    }
+
+    private void TryMove(Vector3 direction)
+    {
+        direction *= _speed * Time.deltaTime;
+
+        if(IsValidMoving(direction))
         {
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            Move(false);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            Move(true);
+            transform.position += direction;
+
+            Moved?.Invoke(direction);
         }
     }
 
-    private void Move(bool isRightMovement)
+    private bool IsValidMoving(Vector3 direction)
     {
-        float xComponent = _speed * Time.deltaTime;
-        Vector3 direction;
-
-        if (isRightMovement == false)
-        {
-            xComponent = -xComponent;
-        }
-
-        direction = new Vector3(xComponent, 0, 0);
-        transform.position += direction;
-
-        Moved?.Invoke(direction);
-    }
-
+        return (transform.position + direction).x <= 1.6f && (transform.position + direction).x >= -1.6f;
+    } 
 }
