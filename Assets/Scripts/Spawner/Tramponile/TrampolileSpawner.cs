@@ -11,17 +11,17 @@ public class TrampolileSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        _barrierSpawner.ShortBarrierSpawned += OnShortBarrierSpawned;
+        _barrierSpawner.BarrierSpawned += OnShortBarrierSpawned;
     }
 
     private void OnDisable()
     {
-        _barrierSpawner.ShortBarrierSpawned -= OnShortBarrierSpawned;
+        _barrierSpawner.BarrierSpawned -= OnShortBarrierSpawned;
     }
 
     private void OnShortBarrierSpawned(Barrier barrier)
     {
-        if (_chanceTrampolineSpawned != 0)
+        if (_chanceTrampolineSpawned != 0 && barrier.CanBeJumpedOver)
         {
             if((int)Random.Range(0, 1/_chanceTrampolineSpawned) == 0)
             {

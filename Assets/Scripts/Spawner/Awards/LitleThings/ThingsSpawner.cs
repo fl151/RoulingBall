@@ -5,9 +5,9 @@ public class ThingsSpawner : MonoBehaviour
 {
     [SerializeField] private Thing _prefab;
 
-    public void ExecutPattern(Vector3 barrierPosition, IPattern pattern, float rangeTaregt)
+    public void ExecutPattern(Vector3 barrierPosition, IPattern pattern)
     {
-        SpawnThings(barrierPosition, pattern.GetPositions(30, rangeTaregt, 0.1f));
+        SpawnThings(barrierPosition, pattern.GetPositions(30, 0.1f));
     }
 
     private void SpawnThings(Vector3 barrierPosition, Vector3[] localPositionsAroundBasrrier)

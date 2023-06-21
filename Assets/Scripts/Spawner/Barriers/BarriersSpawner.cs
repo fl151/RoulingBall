@@ -9,7 +9,7 @@ public class BarriersSpawner : MonoBehaviour
 
     private int _indexCurrentPieceAfterFinish;
 
-    public UnityAction<Barrier> ShortBarrierSpawned;
+    public UnityAction<Barrier> BarrierSpawned;
 
     private void OnEnable()
     {
@@ -56,10 +56,9 @@ public class BarriersSpawner : MonoBehaviour
 
             Barrier barrier = Instantiate(barrierPrefab, point.transform);
 
-            if (barrier.CanBeJumpedOver)
-            {
-                ShortBarrierSpawned(barrier);
-            }
+            barrier.SetPointPosition(point.Position);
+
+            BarrierSpawned?.Invoke(barrier);
         }
     }
 

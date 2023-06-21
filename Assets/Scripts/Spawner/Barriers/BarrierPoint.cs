@@ -2,6 +2,7 @@ using UnityEngine;
 
 public enum Position
 {
+    Null,
     Left,
     Center,
     Right

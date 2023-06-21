@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -18,7 +16,7 @@ public class PatternChecker : MonoBehaviour
             {
                 _currentTern = _ternOn;
 
-                _spawner.ExecutPattern(transform.position, new LinePattern(), 1.6f);
+                _spawner.ExecutPattern(transform.position, new CosPattern(1.6f));
             }
         }
     }

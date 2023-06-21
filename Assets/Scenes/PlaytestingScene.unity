@@ -585,6 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1043742773}
   - component: {fileID: 1043742774}
+  - component: {fileID: 1043742775}
   m_Layer: 0
   m_Name: ThingsSpawner
   m_TagString: Untagged
@@ -620,6 +621,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 5801060740865648825, guid: 0bcb7ab17b33317469fadd5a5de1200c, type: 3}
+--- !u!114 &1043742775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043742772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d00ae35336a124195e3c0bc76a6e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _barrierSpawner: {fileID: 1654555795}
 --- !u!1 &1056338612
 GameObject:
   m_ObjectHideFlags: 0
