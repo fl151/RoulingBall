@@ -5,7 +5,7 @@ public class Web : MonoBehaviour
 {
     private void OnEnable()
     {
-        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
+        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;   
     }
 
     private void OnDisable()
