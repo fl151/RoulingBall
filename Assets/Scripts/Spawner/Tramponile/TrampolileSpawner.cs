@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TrampolileSpawner : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class TrampolileSpawner : MonoBehaviour
     [SerializeField] private float _chanceTrampolineSpawned;
     [SerializeField] private BarriersSpawner _barrierSpawner;
     [SerializeField] private Trampolne _prefab;
+
+    public event UnityAction<Trampolne> TrampolineSpawned;
 
     private void OnEnable()
     {
@@ -25,6 +28,8 @@ public class TrampolileSpawner : MonoBehaviour
             {
                 Trampolne trampoline = Instantiate(_prefab);
                 trampoline.transform.position = barrier.transform.position;
+
+                TrampolineSpawned?.Invoke(trampoline);
             }
         }
     }
