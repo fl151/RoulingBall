@@ -7,9 +7,12 @@ public class FinderRandomPattern : MonoBehaviour
 
     private ThingsSpawner _thingsSpawner;
 
-    private IPattern[] _centerPatterns = { new LinePattern(1.6f), new LinePattern(-1.6f), new CosPattern(1.6f), new CosPattern(-1.6f) };
-    private IPattern[] _leftPatterns = { new LinePattern(1.6f), new CosPattern(1.6f), };
-    private IPattern[] _rightPatterns = { new LinePattern(-1.6f), new CosPattern(-1.6f) };
+    private const float _standartTargetRange = 1.6f;
+
+    private IPattern[] _centerPatterns = { new LinePattern(_standartTargetRange), new LinePattern(-_standartTargetRange), 
+                                           new CosPattern(_standartTargetRange), new CosPattern(-_standartTargetRange) };
+    private IPattern[] _leftPatterns = { new LinePattern(_standartTargetRange), new CosPattern(_standartTargetRange), };
+    private IPattern[] _rightPatterns = { new LinePattern(-_standartTargetRange), new CosPattern(-_standartTargetRange) };
 
     private void Awake()
     {

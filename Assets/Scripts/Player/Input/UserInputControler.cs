@@ -1,4 +1,3 @@
-using Agava.WebUtility;
 using UnityEngine;
 
 public class UserInputControler : MonoBehaviour
@@ -23,14 +22,12 @@ public class UserInputControler : MonoBehaviour
     private void UseMobileInput()
     {
         _mobile.enabled = true;
-
         _player.Instance(_mobile);
     }
 
     private void UseDecktopInput()
     {
         _decktop.enabled = true;
-
         _player.Instance(_decktop);
     }
 }

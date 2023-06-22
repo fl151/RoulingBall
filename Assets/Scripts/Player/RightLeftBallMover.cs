@@ -4,6 +4,8 @@ public class RightLeftBallMover : PlayerMover
 {
     [SerializeField] private float _speed;
 
+    private float _validDeviation = 1.6f;
+
     public void Instance(UserInput input)
     {
         input.Moving += TryMove;
@@ -23,6 +25,7 @@ public class RightLeftBallMover : PlayerMover
 
     private bool IsValidMoving(Vector3 direction)
     {
-        return (transform.position + direction).x <= 1.6f && (transform.position + direction).x >= -1.6f;
+        return (transform.position + direction).x <= _validDeviation && 
+               (transform.position + direction).x >= -_validDeviation;
     } 
 }

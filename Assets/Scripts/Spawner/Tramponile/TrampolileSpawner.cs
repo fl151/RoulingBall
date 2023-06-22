@@ -4,9 +4,7 @@ public class TrampolileSpawner : MonoBehaviour
 {
     [Range(0, 1)]
     [SerializeField] private float _chanceTrampolineSpawned;
-
     [SerializeField] private BarriersSpawner _barrierSpawner;
-
     [SerializeField] private Trampolne _prefab;
 
     private void OnEnable()
