@@ -24,7 +24,6 @@ public class ThingsSpawner : MonoBehaviour
             yield return delay;
 
             var thing = Instantiate(_prefab, gameObject.transform);
-
             thing.transform.position = barrierPosition + localPosition;
         }
     }

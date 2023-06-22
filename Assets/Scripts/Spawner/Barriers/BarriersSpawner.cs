@@ -36,11 +36,9 @@ public class BarriersSpawner : MonoBehaviour
     private void DecorateAfterFinish(PieceAfterFinish piece)
     {
         Color color = _colorsAfterFinish[_indexCurrentPieceAfterFinish % _colorsAfterFinish.Length];
-
         piece.GetComponent<ColorChanger>().SetColor(color);
 
         int text = (_indexCurrentPieceAfterFinish + 1) * 10;
-
         piece.GetComponent<TextChanger>().SetText(text + "");
 
         _indexCurrentPieceAfterFinish++;
@@ -55,7 +53,6 @@ public class BarriersSpawner : MonoBehaviour
             Barrier barrierPrefab = GetRandomBarrier(_barrierPrefabs);
 
             Barrier barrier = Instantiate(barrierPrefab, point.transform);
-
             barrier.SetPointPosition(point.Position);
 
             BarrierSpawned?.Invoke(barrier);
