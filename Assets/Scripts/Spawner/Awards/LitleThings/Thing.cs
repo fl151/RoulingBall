@@ -1,15 +1,13 @@
 using UnityEngine;
 
-public class Thing : MonoBehaviour
+public class Thing : Award
 {
     private bool _isOnceConnected = false;
 
-    private void OnTriggerEnter(Collider other)
+    public bool IsOnceConnected => _isOnceConnected;
+
+    public void Connected()
     {
-        if(other.TryGetComponent(out Player player) && _isOnceConnected == false)
-        {
-            gameObject.transform.parent = player.transform;
-            _isOnceConnected = true;
-        }
+        _isOnceConnected = true;
     }
 }

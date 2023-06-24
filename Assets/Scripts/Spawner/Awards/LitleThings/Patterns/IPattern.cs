@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IPattern
 {
-    public Vector3[] GetPositions(int count, float rangeBetweenThings);
+    public Vector3[] GetPositions();
 }

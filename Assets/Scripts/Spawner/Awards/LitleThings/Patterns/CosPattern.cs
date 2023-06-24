@@ -5,21 +5,25 @@ using UnityEngine;
 public class CosPattern : IPattern
 {
     private float _rangeFromTarget;
+    private int _count;
+    private float _rangeBetweenThings;
 
-    public CosPattern(float rangeFromTarget)
+    public CosPattern(PatternSettings settings)
     {
-        _rangeFromTarget = rangeFromTarget;
+        _rangeFromTarget = settings.TargetRange;
+        _count = settings.Count;
+        _rangeBetweenThings = settings.RangeBetween;
     }
 
-    public Vector3[] GetPositions(int count, float rangeBetweenThings)
+    public Vector3[] GetPositions()
     {
-        Vector3[] positions = new Vector3[count];
+        Vector3[] positions = new Vector3[_count];
 
-        float zFirst = -(count - 1) * rangeBetweenThings / 2;
+        float zFirst = -(_count - 1) * _rangeBetweenThings / 2;
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < _count; i++)
         {
-            float z = zFirst + i * rangeBetweenThings;
+            float z = zFirst + i * _rangeBetweenThings;
 
             float x = Mathf.Cos(z) * _rangeFromTarget;
 

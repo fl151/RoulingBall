@@ -1,59 +1,55 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ThingsSpawner))]
+[RequireComponent(typeof(PatternsExecuter))]
 public class FinderRandomPattern : MonoBehaviour
 {
-    [SerializeField] private BarriersSpawner _barrierSpawner;
+    [SerializeField] private PatternSettings _settingsThingsRight;
+    [SerializeField] private PatternSettings _settingsThingsLeft;
+    [SerializeField] private PatternSettings _settingsDiamonds;
 
-    private ThingsSpawner _thingsSpawner;
+    private IPattern[] _centerPatternsThings;
+    private IPattern[] _leftPatternsThings;
+    private IPattern[] _rightPatternsThings;
 
-    private const float _standartTargetRange = 1.6f;
-
-    private IPattern[] _centerPatterns = { new LinePattern(_standartTargetRange), new LinePattern(-_standartTargetRange), 
-                                           new CosPattern(_standartTargetRange), new CosPattern(-_standartTargetRange) };
-    private IPattern[] _leftPatterns = { new LinePattern(_standartTargetRange), new CosPattern(_standartTargetRange), };
-    private IPattern[] _rightPatterns = { new LinePattern(-_standartTargetRange), new CosPattern(-_standartTargetRange) };
+    private IPattern[] _diamondsPatterns;
 
     private void Awake()
     {
-        _thingsSpawner = GetComponent<ThingsSpawner>();
+        _centerPatternsThings = new IPattern[] { new LinePattern(_settingsThingsRight), new LinePattern(_settingsThingsLeft),
+                                                 new CosPattern(_settingsThingsRight), new CosPattern(_settingsThingsLeft) };
+        _leftPatternsThings = new IPattern[] { new LinePattern(_settingsThingsLeft), new CosPattern(_settingsThingsLeft) };
+        _rightPatternsThings = new IPattern[] { new LinePattern(_settingsThingsRight), new CosPattern(_settingsThingsRight) };
     }
 
-    private void OnEnable()
+    public IPattern GetRandomThingsPattern(Barrier barrier)
     {
-        _barrierSpawner.BarrierSpawned += OnBarrierSpawned;
-    }
+        IPattern pattern = default;
 
-    private void OnDisable()
-    {
-        _barrierSpawner.BarrierSpawned -= OnBarrierSpawned;
-    }
-
-    private void OnBarrierSpawned(Barrier barrier)
-    {
         switch (barrier.Position)
         {
             case Position.Center:
-                UsePattern(GetRandomPattern(_centerPatterns), barrier);
+                pattern = GetRandomPattern(_centerPatternsThings);
                 break;
 
             case Position.Left:
-                UsePattern(GetRandomPattern(_leftPatterns), barrier);
+                pattern = GetRandomPattern(_leftPatternsThings);
                 break;
 
             case Position.Right:
-                UsePattern(GetRandomPattern(_rightPatterns), barrier);
+                pattern = GetRandomPattern(_rightPatternsThings);
                 break;
 
             default:
                 Debug.LogError("У барьера не выбрана позиция");
                 break;
         }
+
+        return pattern;
     }
 
-    private void UsePattern(IPattern pattern, Barrier barrier)
+    public IPattern GetPandomDimondsPattern()
     {
-        _thingsSpawner.ExecutPattern(barrier.transform.position, pattern);
+        return GetRandomPattern(_diamondsPatterns);
     }
 
     private IPattern GetRandomPattern(IPattern[] patterns)

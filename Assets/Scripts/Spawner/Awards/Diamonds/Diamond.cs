@@ -1,5 +1,5 @@
 using UnityEngine;
 
-public class Diamond : MonoBehaviour
+public class Diamond : Award
 {
 }

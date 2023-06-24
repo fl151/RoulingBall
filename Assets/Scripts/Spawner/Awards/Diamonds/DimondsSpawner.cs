@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class DimondsSpawner : MonoBehaviour
+public class DimondsSpawner : AwardSpawner
 {
-    [SerializeField] private Diamond _prefab;
     [SerializeField] private TrampolileSpawner _trampolineSpawner;
     [Range(0, 1)]
     [SerializeField] private float _chanceSpawnOnTrampoline;
@@ -22,18 +21,14 @@ public class DimondsSpawner : MonoBehaviour
     private void OnTrampolineSpawned(Trampolne trampoline)
     {
         if (_chanceSpawnOnTrampoline != 0)
-        {
             if ((int)Random.Range(0, 1 / _chanceSpawnOnTrampoline) == 0)
-            {
                 SpawnDiamond(trampoline.transform.position + _upRangeTrampoline);
-            }
-        }
     }
-        
+
 
     private void SpawnDiamond(Vector3 position)
     {
-        Diamond diamond = Instantiate(_prefab);
+        Diamond diamond = Instantiate(_prefab as Diamond);
         diamond.transform.position = position;
     }
 }
