@@ -317,7 +317,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _settingsThingsRight: {fileID: 11400000, guid: 9f26ef9286dc86f489a67fc6d3655529, type: 2}
   _settingsThingsLeft: {fileID: 11400000, guid: 0da43258d18b870478dd957b007a969a, type: 2}
-  _settingsDiamonds: {fileID: 11400000, guid: 7a252f2ff68c4024b914e5ed8faf1ab9, type: 2}
+  _settingsDiamonds:
+  - {fileID: 11400000, guid: 7b815a1a74de0aa4e8226d34ecc68d77, type: 2}
+  - {fileID: 11400000, guid: c6a9fa060c6e06842875892dae1a1c20, type: 2}
+  - {fileID: 11400000, guid: 630b302fc7fc96f4da3790a3faf1eb5e, type: 2}
+  - {fileID: 11400000, guid: 2e388e49b8f8e7f488a93b1b7bce1c56, type: 2}
+  - {fileID: 11400000, guid: 5e7ade1266a9f064cb9f0d88b1c9650d, type: 2}
+  - {fileID: 11400000, guid: e48aba6e506fc1f4fa969785473a2ad2, type: 2}
+  - {fileID: 11400000, guid: 81e5f2539ff94d642b52f723d62959ce, type: 2}
+  - {fileID: 11400000, guid: 91b5803e64e7a3a4cbc320d9963dc9e1, type: 2}
+  - {fileID: 11400000, guid: db520443f19bd084789f46e1289f9d7c, type: 2}
 --- !u!114 &305390909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,7 +907,7 @@ GameObject:
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1494626073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,8 +920,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c813d77a362007e4e987c030b9dd06b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ternOn: 1
-  _spawner: {fileID: 0}
+  _ternOn: 0
+  _spawner: {fileID: 305390909}
+  _settings: {fileID: 11400000, guid: 7b815a1a74de0aa4e8226d34ecc68d77, type: 2}
+  _template: {fileID: 5968164360275724957, guid: d27bac6a5bd407f42a9835cc542e10ff, type: 3}
 --- !u!4 &1494626074
 Transform:
   m_ObjectHideFlags: 0
@@ -1513,6 +1524,7 @@ MonoBehaviour:
   _finderPattern: {fileID: 305390908}
   _patternExecuter: {fileID: 305390909}
   _trampolineSpawner: {fileID: 341452517}
+  _roadSpawner: {fileID: 2130499309}
   _chanceSpawnOnTrampoline: 0.5
 --- !u!1 &2130499307
 GameObject:

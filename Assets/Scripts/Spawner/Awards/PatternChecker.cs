@@ -5,6 +5,8 @@ public class PatternChecker : MonoBehaviour
 {
     [SerializeField] private bool _ternOn;
     [SerializeField] private PatternsExecuter _spawner;
+    [SerializeField] private PatternSettings _settings;
+    [SerializeField] private Award _template;
 
     private bool _currentTern;
 
@@ -16,7 +18,7 @@ public class PatternChecker : MonoBehaviour
             {
                 _currentTern = _ternOn;
 
-                //_spawner.ExecutPattern(transform.position, new CosPattern());
+                _spawner.ExecutPattern(new DiamondPattern(_settings as DiamondsPatternSettings), _template, transform.position);
             }
         }
     }

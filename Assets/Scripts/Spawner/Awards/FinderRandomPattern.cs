@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PatternsExecuter))]
@@ -5,13 +6,13 @@ public class FinderRandomPattern : MonoBehaviour
 {
     [SerializeField] private PatternSettings _settingsThingsRight;
     [SerializeField] private PatternSettings _settingsThingsLeft;
-    [SerializeField] private PatternSettings _settingsDiamonds;
+    [SerializeField] private DiamondsPatternSettings[] _settingsDiamonds;
 
     private IPattern[] _centerPatternsThings;
     private IPattern[] _leftPatternsThings;
     private IPattern[] _rightPatternsThings;
 
-    private IPattern[] _diamondsPatterns;
+    private List<IPattern> _diamondsPatterns = new List<IPattern>();
 
     private void Awake()
     {
@@ -19,6 +20,11 @@ public class FinderRandomPattern : MonoBehaviour
                                                  new CosPattern(_settingsThingsRight), new CosPattern(_settingsThingsLeft) };
         _leftPatternsThings = new IPattern[] { new LinePattern(_settingsThingsLeft), new CosPattern(_settingsThingsLeft) };
         _rightPatternsThings = new IPattern[] { new LinePattern(_settingsThingsRight), new CosPattern(_settingsThingsRight) };
+
+        foreach (var settings in _settingsDiamonds)
+        {
+            _diamondsPatterns.Add(new DiamondPattern(settings));
+        }
     }
 
     public IPattern GetRandomThingsPattern(Barrier barrier)
@@ -47,7 +53,7 @@ public class FinderRandomPattern : MonoBehaviour
         return pattern;
     }
 
-    public IPattern GetPandomDimondsPattern()
+    public IPattern GetRandomDimondsPattern()
     {
         return GetRandomPattern(_diamondsPatterns);
     }
@@ -55,5 +61,10 @@ public class FinderRandomPattern : MonoBehaviour
     private IPattern GetRandomPattern(IPattern[] patterns)
     {
         return patterns[Random.Range(0, patterns.Length)];
+    }
+
+    private IPattern GetRandomPattern(List<IPattern> patterns)
+    {
+        return patterns[Random.Range(0, patterns.Count)];
     }
 }

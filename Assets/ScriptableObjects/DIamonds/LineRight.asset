@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb68e38b79f18a4ca7ee23ced1174dd, type: 3}
-  m_Name: Diamonds
+  m_Script: {fileID: 11500000, guid: 2f3fcdbe9e8022c4eaf996180b6c593a, type: 3}
+  m_Name: LineRight
   m_EditorClassIdentifier: 
-  _targetRange: 0
+  _targetRange: 1.6
   _count: 5
-  _rangeBetween: 1
+  _rangeBetween: 1.75
+  _rangeBetweenLines: 0
+  _inclineCofficient: 0
