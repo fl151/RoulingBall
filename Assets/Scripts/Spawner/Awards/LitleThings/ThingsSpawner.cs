@@ -1,30 +1,25 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ThingsSpawner : MonoBehaviour
+public class ThingsSpawner : AwardSpawner
 {
-    [SerializeField] private Thing _prefab;
+    [SerializeField] private BarriersSpawner _barrierSpawner;
 
-    public void ExecutPattern(Vector3 barrierPosition, IPattern pattern)
+    private void OnEnable()
     {
-        SpawnThings(barrierPosition, pattern.GetPositions(30, 0.1f));
+        _barrierSpawner.BarrierSpawned += OnBarrierSpawned;
     }
 
-    private void SpawnThings(Vector3 barrierPosition, Vector3[] localPositionsAroundBasrrier)
+    private void OnDisable()
     {
-        StartCoroutine(SpanwThings(barrierPosition, localPositionsAroundBasrrier));
+        _barrierSpawner.BarrierSpawned -= OnBarrierSpawned;
     }
 
-    private IEnumerator SpanwThings(Vector3 barrierPosition, Vector3[] localPositionsAroundBasrrier)
+    private void OnBarrierSpawned(Barrier barrier)
     {
-        var delay = new WaitForEndOfFrame();
+        IPattern pattern = _finderPattern.GetRandomThingsPattern(barrier);
 
-        foreach (var localPosition in localPositionsAroundBasrrier)
-        {
-            yield return delay;
-
-            var thing = Instantiate(_prefab, gameObject.transform);
-            thing.transform.position = barrierPosition + localPosition;
-        }
+        _patternExecuter.ExecutPattern(pattern, _prefab, barrier.transform.position);
     }
 }
