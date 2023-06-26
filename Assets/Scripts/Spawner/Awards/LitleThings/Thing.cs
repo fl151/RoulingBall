@@ -1,13 +1,17 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
 public class Thing : Award
 {
-    private bool _isOnceConnected = false;
+    private SphereCollider _collider;
 
-    public bool IsOnceConnected => _isOnceConnected;
-
-    public void Connected()
+    private void Start()
     {
-        _isOnceConnected = true;
+        _collider = GetComponent<SphereCollider>();
+    }
+
+    public void Connect()
+    {
+        _collider.enabled = false;
     }
 }

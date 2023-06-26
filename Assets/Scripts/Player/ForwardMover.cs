@@ -1,17 +1,29 @@
+using System;
 using UnityEngine;
 
 public class ForwardMover : PlayerMover
 {
     [SerializeField] private float _speed;
+    [SerializeField] private GameStatesControler _gameControler;
 
-    private bool _isGameStarted = true;
+    private bool _isGamePlaying = false;
+
+    private void OnEnable()
+    {
+        _gameControler.GameStarted += OnGameContinued;
+    }
 
     private void FixedUpdate()
     {
-        if (_isGameStarted)
+        if (_isGamePlaying)
         {
             Move();
         }
+    }
+
+    private void OnDisable()
+    {
+        _gameControler.GameStarted -= OnGameContinued;
     }
 
     public void UpSpeed(float increaseTimes)
@@ -24,6 +36,16 @@ public class ForwardMover : PlayerMover
     {
         float times = GetCorrectTimes(decreaseTimes);
         _speed /= times;
+    }
+
+    private void OnGameContinued()
+    {
+        _isGamePlaying = true;
+    }
+
+    private void OnGamePaused()
+    {
+        _isGamePlaying = false;
     }
 
     private void Move()

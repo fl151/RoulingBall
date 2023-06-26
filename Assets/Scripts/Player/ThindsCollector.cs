@@ -9,12 +9,9 @@ public class ThindsCollector : MonoBehaviour
     {
         if (other.TryGetComponent(out Thing thing))
         {
-            if(thing.IsOnceConnected == false)
-            {
-                thing.transform.parent = transform;
-                _things.Enqueue(thing);
-                thing.Connected();
-            }
+            thing.transform.parent = transform;
+            _things.Enqueue(thing);
+            thing.Connect();
         }
     }
 }
