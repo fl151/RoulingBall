@@ -1,13 +1,20 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameStatesControler : MonoBehaviour
 {
     [SerializeField] private UserInput _mobileInput;
     [SerializeField] private UserInput _decktopInput;
     [SerializeField] private HUDChanger _hudsChanger;
+    [SerializeField] private Button _tryAgainButton;
+    [SerializeField] private Player _player;
+
+    private const string _mainSceneTitle = "Main";
 
     public UnityAction GameStarted;
+    public UnityAction PlayerDied;
 
     private void OnEnable()
     {
@@ -19,8 +26,11 @@ public class GameStatesControler : MonoBehaviour
         {
             _decktopInput.FirstContactHappend += OnFirstContactHappened;
         }
-    }
 
+        _tryAgainButton.onClick.AddListener(OnButtonTryAgainClicked);
+        _player.Died += OnPlayerDied;
+    }
+    
     private void OnDisable()
     {
         if (Application.isMobilePlatform)
@@ -31,10 +41,24 @@ public class GameStatesControler : MonoBehaviour
         {
             _decktopInput.FirstContactHappend -= OnFirstContactHappened;
         }
+
+        _tryAgainButton.onClick.RemoveListener(OnButtonTryAgainClicked);
+        _player.Died -= OnPlayerDied;
+    }
+
+    private void OnButtonTryAgainClicked()
+    {
+        SceneManager.LoadScene(_mainSceneTitle);
     }
 
     private void OnFirstContactHappened()
     {
         GameStarted?.Invoke();
+    }
+
+    private void OnPlayerDied()
+    {
+        PlayerDied?.Invoke();
+        _decktopInput.gameObject.SetActive(false);
     }
 }

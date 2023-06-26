@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class ForwardMover : PlayerMover
@@ -10,7 +9,8 @@ public class ForwardMover : PlayerMover
 
     private void OnEnable()
     {
-        _gameControler.GameStarted += OnGameContinued;
+        _gameControler.GameStarted += OnGameStarted;
+        _gameControler.PlayerDied += OnPlayerDied;
     }
 
     private void FixedUpdate()
@@ -23,7 +23,8 @@ public class ForwardMover : PlayerMover
 
     private void OnDisable()
     {
-        _gameControler.GameStarted -= OnGameContinued;
+        _gameControler.GameStarted -= OnGameStarted;
+        _gameControler.PlayerDied -= OnPlayerDied;
     }
 
     public void UpSpeed(float increaseTimes)
@@ -38,12 +39,12 @@ public class ForwardMover : PlayerMover
         _speed /= times;
     }
 
-    private void OnGameContinued()
+    private void OnGameStarted()
     {
         _isGamePlaying = true;
     }
 
-    private void OnGamePaused()
+    private void OnPlayerDied()
     {
         _isGamePlaying = false;
     }

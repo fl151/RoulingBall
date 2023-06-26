@@ -7,12 +7,14 @@ public class HUDChanger : MonoBehaviour
 {
     [SerializeField] private GameObject _mobileHUD;
     [SerializeField] private GameObject _decktopHUD;
+    [SerializeField] private GameObject _gameOverCanvas;
     [SerializeField] private GameStatesControler _gameControler;
 
     private void OnEnable()
     {
         _gameControler.GameStarted += OnGameStarted;
-    }    
+        _gameControler.PlayerDied += OnPlayerDied;
+    }
 
     private void Start()
     {
@@ -29,6 +31,12 @@ public class HUDChanger : MonoBehaviour
     private void OnDisable()
     {
         _gameControler.GameStarted -= OnGameStarted;
+        _gameControler.PlayerDied -= OnPlayerDied;
+    }
+
+    private void OnPlayerDied()
+    {
+        _gameOverCanvas.SetActive(true);
     }
 
     private void OnGameStarted()
