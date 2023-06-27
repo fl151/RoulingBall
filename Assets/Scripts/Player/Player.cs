@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    public UnityAction Died;
+    public event UnityAction Died;
 
     private void OnTriggerEnter(Collider other)
     {

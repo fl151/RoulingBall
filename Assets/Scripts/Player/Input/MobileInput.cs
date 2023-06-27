@@ -3,11 +3,11 @@ using UnityEngine.EventSystems;
 
 public class MobileInput : UserInput, IDragHandler
 {
-    private float _coefficientTouchMoving = 1 / 15;
+    private const float _coefficientTouchMoving = 1 / 15;
 
     public void OnDrag(PointerEventData eventData)
     {
-        if(_isFirstContactHappened == false)
+        if (_isFirstContactHappened == false && eventData.IsPointerMoving())
         {
             FirstContactHappend?.Invoke();
             _isFirstContactHappened = true;
@@ -16,6 +16,6 @@ public class MobileInput : UserInput, IDragHandler
         if (eventData.IsPointerMoving())
         {
             Moving?.Invoke(new Vector3(eventData.delta.x * _coefficientTouchMoving, 0, 0));
-        }
+        }  
     }
 }

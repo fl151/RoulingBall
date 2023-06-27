@@ -10,6 +10,8 @@ public class HUDChanger : MonoBehaviour
     [SerializeField] private GameObject _gameOverCanvas;
     [SerializeField] private GameStatesControler _gameControler;
 
+    private GameObject _currentHud;
+
     private void OnEnable()
     {
         _gameControler.GameStarted += OnGameStarted;
@@ -21,10 +23,12 @@ public class HUDChanger : MonoBehaviour
         if (Application.isMobilePlatform)
         {
             _mobileHUD.SetActive(true);
+            _currentHud = _mobileHUD;
         }
         else
         {
             _decktopHUD.SetActive(true);
+            _currentHud = _decktopHUD;
         }
     }
 
@@ -41,7 +45,6 @@ public class HUDChanger : MonoBehaviour
 
     private void OnGameStarted()
     {
-        _mobileHUD.SetActive(false);
-        _decktopHUD.SetActive(false);
+        _currentHud.SetActive(false);
     }
 }
