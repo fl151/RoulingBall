@@ -5,7 +5,7 @@ public class UserInputControler : MonoBehaviour
     [SerializeField] private UserInput _mobile;
     [SerializeField] private UserInput _decktop;
 
-    [SerializeField] private RightLeftBallMover _player;
+    [SerializeField] private RightLeftBallMover _playerRLMover;
 
     void Start()
     {
@@ -22,12 +22,12 @@ public class UserInputControler : MonoBehaviour
     private void UseMobileInput()
     {
         _mobile.enabled = true;
-        _player.Instance(_mobile);
+        _playerRLMover.InstanceInput(_mobile);
     }
 
     private void UseDecktopInput()
     {
         _decktop.enabled = true;
-        _player.Instance(_decktop);
+        _playerRLMover.InstanceInput(_decktop);
     }
 }

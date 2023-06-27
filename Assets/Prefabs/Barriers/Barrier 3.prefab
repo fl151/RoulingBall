@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3296998521317298774}
   - component: {fileID: 2416916464079119414}
-  - component: {fileID: 8539186652743150330}
+  - component: {fileID: 6116599048280365073}
   m_Layer: 0
   m_Name: Barrier 3
   m_TagString: Untagged
@@ -129,8 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9222ed28025d3854ebd45e40fd16b3dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &8539186652743150330
-BoxCollider:
+  _canBeJumpetOver: 0
+--- !u!136 &6116599048280365073
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -139,9 +140,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7026759, y: 1.1638579, z: 0.76701736}
-  m_Center: {x: -0.003285557, y: 0.6024424, z: 0.017636418}
+  m_Radius: 0.27575636
+  m_Height: 1.2219919
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.62791663, z: 0}
 --- !u!1 &7589305835058470582
 GameObject:
   m_ObjectHideFlags: 0
