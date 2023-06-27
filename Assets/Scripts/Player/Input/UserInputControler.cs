@@ -7,7 +7,14 @@ public class UserInputControler : MonoBehaviour
 
     [SerializeField] private RightLeftBallMover _playerRLMover;
 
-    void Start()
+    [SerializeField] private GameStatesControler _gameControler;
+
+    private void OnEnable()
+    {
+        _gameControler.PlayerDied += OnPlayerDied;
+    }
+
+    private void Start()
     {
         if (Application.isMobilePlatform)
         {
@@ -19,9 +26,14 @@ public class UserInputControler : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        _gameControler.PlayerDied -= OnPlayerDied;
+    }
+
     private void UseMobileInput()
     {
-        _mobile.enabled = true;
+        _mobile.gameObject.SetActive(true);
         _playerRLMover.InstanceInput(_mobile);
     }
 
@@ -29,5 +41,11 @@ public class UserInputControler : MonoBehaviour
     {
         _decktop.enabled = true;
         _playerRLMover.InstanceInput(_decktop);
+    }
+
+    private void OnPlayerDied()
+    {
+        _decktop.enabled = false;
+        _mobile.gameObject.SetActive(false);
     }
 }

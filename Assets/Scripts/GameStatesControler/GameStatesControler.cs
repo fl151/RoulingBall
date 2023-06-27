@@ -18,29 +18,17 @@ public class GameStatesControler : MonoBehaviour
 
     private void OnEnable()
     {
-        if (Application.isMobilePlatform)
-        {
-            _mobileInput.FirstContactHappend += OnFirstContactHappened;
-        }
-        else
-        {
-            _decktopInput.FirstContactHappend += OnFirstContactHappened;
-        }
+        _mobileInput.FirstContactHappend += OnFirstContactHappened;
+        _decktopInput.FirstContactHappend += OnFirstContactHappened;
 
         _tryAgainButton.onClick.AddListener(OnButtonTryAgainClicked);
         _player.Died += OnPlayerDied;
     }
-    
+
     private void OnDisable()
     {
-        if (Application.isMobilePlatform)
-        {
-            _mobileInput.FirstContactHappend -= OnFirstContactHappened;
-        }
-        else
-        {
-            _decktopInput.FirstContactHappend -= OnFirstContactHappened;
-        }
+        _mobileInput.FirstContactHappend -= OnFirstContactHappened;
+        _decktopInput.FirstContactHappend -= OnFirstContactHappened;
 
         _tryAgainButton.onClick.RemoveListener(OnButtonTryAgainClicked);
         _player.Died -= OnPlayerDied;
@@ -59,6 +47,5 @@ public class GameStatesControler : MonoBehaviour
     private void OnPlayerDied()
     {
         PlayerDied?.Invoke();
-        _decktopInput.gameObject.SetActive(false);
     }
 }

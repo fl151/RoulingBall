@@ -4,7 +4,7 @@ public class RightLeftBallMover : PlayerMover
 {
     [SerializeField] private float _speed;
 
-    private float _validDeviation = 1.6f;
+    private const float _validDeviation = 1.6f;
     private UserInput _input;
 
     public void InstanceInput(UserInput input)
