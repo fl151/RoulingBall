@@ -13,8 +13,9 @@ public class GameStatesControler : MonoBehaviour
 
     private const string _mainSceneTitle = "Main";
 
-    public UnityAction GameStarted;
-    public UnityAction PlayerDied;
+    public event UnityAction GameStarted;
+    public event UnityAction PlayerDied;
+    public event UnityAction PlayerFinish;
 
     private void OnEnable()
     {
@@ -23,6 +24,7 @@ public class GameStatesControler : MonoBehaviour
 
         _tryAgainButton.onClick.AddListener(OnButtonTryAgainClicked);
         _player.Died += OnPlayerDied;
+        _player.Finish += OnPlayerFinish;
     }
 
     private void OnDisable()
@@ -32,6 +34,7 @@ public class GameStatesControler : MonoBehaviour
 
         _tryAgainButton.onClick.RemoveListener(OnButtonTryAgainClicked);
         _player.Died -= OnPlayerDied;
+        _player.Finish += OnPlayerFinish;
     }
 
     private void OnButtonTryAgainClicked()
@@ -47,5 +50,10 @@ public class GameStatesControler : MonoBehaviour
     private void OnPlayerDied()
     {
         PlayerDied?.Invoke();
+    }
+
+    private void OnPlayerFinish()
+    {
+        PlayerFinish?.Invoke();
     }
 }

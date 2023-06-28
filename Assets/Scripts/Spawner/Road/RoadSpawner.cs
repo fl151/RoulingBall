@@ -8,14 +8,14 @@ public class RoadSpawner : MonoBehaviour
     [SerializeField] private PieceOfRoad _endPieceRoad;
     [SerializeField] private PieceOfRoad _afterEndPiece;
 
-    public event UnityAction<PieceOfRoad> Spawned; 
-    public event UnityAction<PieceOfRoad> SpawnedAfterFinish; 
-
-    private const int _countPiecesRoad = 5;
+    private const int _countPiecesRoad = 4;
     private const int _spreadCountPiecesRoads = 3;
     private const int _countPiecesRoadAfterFinish = 10;
 
     private PieceOfRoad _lastPiece;
+
+    public event UnityAction<PieceOfRoad> Spawned;
+    public event UnityAction<PieceOfRoad> SpawnedAfterFinish;
 
     private void Start()
     {

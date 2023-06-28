@@ -11,7 +11,8 @@ public class UserInputControler : MonoBehaviour
 
     private void OnEnable()
     {
-        _gameControler.PlayerDied += OnPlayerDied;
+        _gameControler.PlayerDied += OnPlayerStop;
+        _gameControler.PlayerFinish += OnPlayerStop;
     }
 
     private void Start()
@@ -28,7 +29,8 @@ public class UserInputControler : MonoBehaviour
 
     private void OnDisable()
     {
-        _gameControler.PlayerDied -= OnPlayerDied;
+        _gameControler.PlayerDied -= OnPlayerStop;
+        _gameControler.PlayerFinish -= OnPlayerStop;
     }
 
     private void UseMobileInput()
@@ -43,9 +45,15 @@ public class UserInputControler : MonoBehaviour
         _playerRLMover.InstanceInput(_decktop);
     }
 
-    private void OnPlayerDied()
+    private void OnPlayerStop()
     {
         _decktop.enabled = false;
         _mobile.gameObject.SetActive(false);
+    }
+
+    private void OnPlayerMoveAgain()
+    {
+        _decktop.enabled = true;
+        _mobile.gameObject.SetActive(true);
     }
 }

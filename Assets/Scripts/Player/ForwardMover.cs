@@ -10,7 +10,8 @@ public class ForwardMover : PlayerMover
     private void OnEnable()
     {
         _gameControler.GameStarted += OnGameStarted;
-        _gameControler.PlayerDied += OnPlayerDied;
+        _gameControler.PlayerDied += OnPlayerStopped;
+        _gameControler.PlayerFinish += OnPlayerStopped;
     }
 
     private void FixedUpdate()
@@ -24,7 +25,8 @@ public class ForwardMover : PlayerMover
     private void OnDisable()
     {
         _gameControler.GameStarted -= OnGameStarted;
-        _gameControler.PlayerDied -= OnPlayerDied;
+        _gameControler.PlayerDied -= OnPlayerStopped;
+        _gameControler.PlayerFinish -= OnPlayerStopped;
     }
 
     public void UpSpeed(float increaseTimes)
@@ -44,9 +46,14 @@ public class ForwardMover : PlayerMover
         _isGamePlaying = true;
     }
 
-    private void OnPlayerDied()
+    private void OnPlayerStopped()
     {
         _isGamePlaying = false;
+    }
+
+    private void OnPlayerMoveAgain()
+    {
+        _isGamePlaying = true;
     }
 
     private void Move()
