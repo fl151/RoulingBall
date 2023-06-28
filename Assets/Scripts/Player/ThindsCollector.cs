@@ -14,4 +14,19 @@ public class ThindsCollector : MonoBehaviour
             thing.Connect();
         }
     }
+
+    public bool TryGetThing(out Thing thing)
+    {
+        if (_things.Count != 0)
+        {
+            thing = _things.Dequeue();
+        }
+        else
+        {
+            thing = null;
+            return false;
+        }
+
+        return true;
+    }
 }

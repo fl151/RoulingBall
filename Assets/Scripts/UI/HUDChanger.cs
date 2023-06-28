@@ -8,6 +8,7 @@ public class HUDChanger : MonoBehaviour
     [SerializeField] private GameObject _mobileHUD;
     [SerializeField] private GameObject _decktopHUD;
     [SerializeField] private GameObject _gameOverCanvas;
+    [SerializeField] private GameObject _findSpeedAfterFinishCanvas;
     [SerializeField] private GameStatesControler _gameControler;
 
     private GameObject _currentHud;
@@ -16,6 +17,8 @@ public class HUDChanger : MonoBehaviour
     {
         _gameControler.GameStarted += OnGameStarted;
         _gameControler.PlayerDied += OnPlayerDied;
+        _gameControler.PlayerFinish += OnPlayerFinished;
+        _gameControler.SpeedFinded += OnSpeedFinded;
     }
 
     private void Start()
@@ -36,6 +39,8 @@ public class HUDChanger : MonoBehaviour
     {
         _gameControler.GameStarted -= OnGameStarted;
         _gameControler.PlayerDied -= OnPlayerDied;
+        _gameControler.PlayerFinish -= OnPlayerFinished;
+        _gameControler.SpeedFinded -= OnSpeedFinded;
     }
 
     private void OnPlayerDied()
@@ -46,5 +51,15 @@ public class HUDChanger : MonoBehaviour
     private void OnGameStarted()
     {
         _currentHud.SetActive(false);
+    }
+
+    private void OnPlayerFinished()
+    {
+        _findSpeedAfterFinishCanvas.SetActive(true);
+    }
+
+    private void OnSpeedFinded()
+    {
+        _findSpeedAfterFinishCanvas.SetActive(false);
     }
 }
