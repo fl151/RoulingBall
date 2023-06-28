@@ -18,6 +18,7 @@ public class HUDChanger : MonoBehaviour
         _gameControler.GameStarted += OnGameStarted;
         _gameControler.PlayerDied += OnPlayerDied;
         _gameControler.PlayerFinish += OnPlayerFinished;
+        _gameControler.SpeedFinded += OnSpeedFinded;
     }
 
     private void Start()
@@ -39,6 +40,7 @@ public class HUDChanger : MonoBehaviour
         _gameControler.GameStarted -= OnGameStarted;
         _gameControler.PlayerDied -= OnPlayerDied;
         _gameControler.PlayerFinish -= OnPlayerFinished;
+        _gameControler.SpeedFinded -= OnSpeedFinded;
     }
 
     private void OnPlayerDied()

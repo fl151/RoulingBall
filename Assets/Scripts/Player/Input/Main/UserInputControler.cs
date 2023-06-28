@@ -13,6 +13,8 @@ public class UserInputControler : MonoBehaviour
     {
         _gameControler.PlayerDied += OnPlayerStop;
         _gameControler.PlayerFinish += OnPlayerStop;
+        _gameControler.SpeedFinded += OnPlayerMoveAgain;
+        _gameControler.GameFinished += OnPlayerStop;
     }
 
     private void Start()
@@ -31,6 +33,8 @@ public class UserInputControler : MonoBehaviour
     {
         _gameControler.PlayerDied -= OnPlayerStop;
         _gameControler.PlayerFinish -= OnPlayerStop;
+        _gameControler.SpeedFinded -= OnPlayerMoveAgain;
+        _gameControler.GameFinished -= OnPlayerStop;
     }
 
     private void UseMobileInput()

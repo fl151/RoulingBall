@@ -12,6 +12,8 @@ public class ForwardMover : PlayerMover
         _gameControler.GameStarted += OnGameStarted;
         _gameControler.PlayerDied += OnPlayerStopped;
         _gameControler.PlayerFinish += OnPlayerStopped;
+        _gameControler.SpeedFinded += OnPlayerMoveAgain;
+        _gameControler.GameFinished += OnPlayerStopped;
     }
 
     private void FixedUpdate()
@@ -27,6 +29,8 @@ public class ForwardMover : PlayerMover
         _gameControler.GameStarted -= OnGameStarted;
         _gameControler.PlayerDied -= OnPlayerStopped;
         _gameControler.PlayerFinish -= OnPlayerStopped;
+        _gameControler.SpeedFinded -= OnPlayerMoveAgain;
+        _gameControler.GameFinished -= OnPlayerStopped;
     }
 
     public void UpSpeed(float increaseTimes)

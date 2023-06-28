@@ -54,8 +54,6 @@ public class CameraMover : MonoBehaviour
 
     private bool IsPositionFarAway(Vector3 targetPosition)
     {
-        Debug.Log((targetPosition - transform.position).magnitude);
-
         return (targetPosition - transform.position).magnitude > _closeEnoughRange;
     }
 }
