@@ -1,4 +1,0 @@
-mergeInfo(LibraryManager.library, {
-
-
-});
