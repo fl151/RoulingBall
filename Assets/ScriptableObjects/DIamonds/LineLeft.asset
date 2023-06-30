@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3fcdbe9e8022c4eaf996180b6c593a, type: 3}
   m_Name: LineLeft
   m_EditorClassIdentifier: 
-  _targetRange: -1.6
+  _targetRange: -1.3
   _count: 5
   _rangeBetween: 1.75
   _rangeBetweenLines: 0
