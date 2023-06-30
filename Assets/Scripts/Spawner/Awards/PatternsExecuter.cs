@@ -1,19 +1,22 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PatternsExecuter : MonoBehaviour
 {
+    public event UnityAction<Thing> ThingSpawned;
+
     public void ExecutPattern(IPattern pattern, Award template, Vector3 barrierPosition)
     {
-        SpawnThings(template, barrierPosition, pattern.GetPositions());
+        SpawnAward(template, barrierPosition, pattern.GetPositions());
     }
 
-    private void SpawnThings(Award template, Vector3 barrierPosition, Vector3[] localPositionsAroundBasrrier)
+    private void SpawnAward(Award template, Vector3 barrierPosition, Vector3[] localPositionsAroundBasrrier)
     {
-        StartCoroutine(SpanwThings(template, barrierPosition, localPositionsAroundBasrrier));
+        StartCoroutine(SpanwAward(template, barrierPosition, localPositionsAroundBasrrier));
     }
 
-    private IEnumerator SpanwThings(Award template, Vector3 barrierPosition, Vector3[] localPositionsAroundBasrrier)
+    private IEnumerator SpanwAward(Award template, Vector3 barrierPosition, Vector3[] localPositionsAroundBasrrier)
     {
         var delay = new WaitForEndOfFrame();
 
@@ -21,8 +24,13 @@ public class PatternsExecuter : MonoBehaviour
         {
             yield return delay;
 
-            var thing = Instantiate(template, gameObject.transform);
-            thing.transform.position = barrierPosition + localPosition;
+            var award = Instantiate(template, gameObject.transform);
+            award.transform.position = barrierPosition + localPosition;
+
+            if(award is Thing)
+            {
+                ThingSpawned?.Invoke(award as Thing);
+            }
         }
     }
 }

@@ -1,9 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ThindsCollector : MonoBehaviour
 {
     private Queue<Thing> _things = new Queue<Thing>();
+
+    public event UnityAction ThingTaken;
+
+    public int Count => _things.Count;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +17,8 @@ public class ThindsCollector : MonoBehaviour
             thing.transform.parent = transform;
             _things.Enqueue(thing);
             thing.Connect();
+
+            ThingTaken?.Invoke();
         }
     }
 

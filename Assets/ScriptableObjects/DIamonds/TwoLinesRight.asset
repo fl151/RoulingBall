@@ -15,5 +15,5 @@ MonoBehaviour:
   _targetRange: 0.75
   _count: 5
   _rangeBetween: 1.75
-  _rangeBetweenLines: 0.75
+  _rangeBetweenLines: 0.6
   _inclineCofficient: 1.5
