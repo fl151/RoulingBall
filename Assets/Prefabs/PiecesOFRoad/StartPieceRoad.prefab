@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4470170080744920135}
   - component: {fileID: -1810292330431331080}
+  - component: {fileID: -7006690367832099642}
   m_Layer: 0
   m_Name: StartPieceRoad
   m_TagString: Untagged
@@ -88,6 +89,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66afab62038c90641af37e7388dc1f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7006690367832099642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7197974709786515202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3806908c32c07a46976e2dadf2c37df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &9198492954820510139
@@ -172,3 +185,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 609541395851165648, guid: 37eb0db13b4f7c742b31ab882516f69c, type: 3}
   m_PrefabInstance: {fileID: 9198492954820510139}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8978430104781219025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 233718819223954794, guid: 37eb0db13b4f7c742b31ab882516f69c, type: 3}
+  m_PrefabInstance: {fileID: 9198492954820510139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1218365671927401259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978430104781219025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dccb176cfac0fbe4ba76bb4fd42bf95e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
