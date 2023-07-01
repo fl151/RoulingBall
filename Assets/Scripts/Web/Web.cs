@@ -3,9 +3,25 @@ using UnityEngine;
 
 public class Web : MonoBehaviour
 {
+    public static Web Instance;
+
     private void OnEnable()
     {
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;   
+    }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            transform.parent = null;
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDisable()

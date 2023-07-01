@@ -7,7 +7,7 @@ public class RoadSpawner : MonoBehaviour
     [SerializeField] private PieceOfRoad[] _prefabsPoad;
     [SerializeField] private PieceOfRoad _endPieceRoad;
     [SerializeField] private PieceOfRoad _afterEndPiece;
-
+    [SerializeField] private CheckerFinish _checkerFinish;
     [SerializeField] private Color[] _validColorsRoad;
 
     private const int _countPiecesRoad = 4;
@@ -35,7 +35,8 @@ public class RoadSpawner : MonoBehaviour
             SetColor(currentPiece, _color);
         }
 
-        SpawnPiece(_endPieceRoad);
+        var end = SpawnPiece(_endPieceRoad);
+        _checkerFinish.SetFinish(end.GetComponentInChildren<FinishLine>());
 
         for (int i = 0; i < _countPiecesRoadAfterFinish; i++)
         {

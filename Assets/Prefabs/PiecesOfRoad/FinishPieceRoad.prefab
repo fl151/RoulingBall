@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3697263407113628218}
   - component: {fileID: 7638114667504222850}
+  - component: {fileID: 340952532202729989}
   m_Layer: 0
   m_Name: EndPoint
   m_TagString: Untagged
@@ -44,6 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70783e32b36b37a4d9241aff5b58650d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &340952532202729989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404443775079454554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b680b75171eda45a53b6b96172529c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7197974709786515202
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +68,6 @@ GameObject:
   - component: {fileID: 4470170080744920135}
   - component: {fileID: -1810292330431331080}
   - component: {fileID: 6733909194235868825}
-  - component: {fileID: 4206242066544497132}
   m_Layer: 0
   m_Name: FinishPieceRoad
   m_TagString: Untagged
@@ -105,18 +117,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.5, y: 1, z: 0.05}
   m_Center: {x: 0, y: 0.5, z: 1.4}
---- !u!114 &4206242066544497132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7197974709786515202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b680b75171eda45a53b6b96172529c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &9198492954820510139
 PrefabInstance:
   m_ObjectHideFlags: 0
