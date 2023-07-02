@@ -41,6 +41,6 @@ mergeInto(LibraryManager.library, {
     lb.getLeaderboardEntries('Range', { quantityTop: 1 })
       .then(res => myGameInstanse.SendMessage('Progress', 'SetTopRange', res));
   });
-  }
+  },
   
 });
