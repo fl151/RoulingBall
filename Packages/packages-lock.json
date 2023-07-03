@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "codes.aureola.simplejson": {
-      "version": "file:C:/UnityPackeges/SimpleJSON-Unity-master",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.agava.webutility": {
       "version": "https://github.com/forcepusher/com.agava.webutility.git#3.0.0",
       "depth": 0,

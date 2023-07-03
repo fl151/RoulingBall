@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "codes.aureola.simplejson": "file:C:/UnityPackeges/SimpleJSON-Unity-master",
     "com.agava.webutility": "https://github.com/forcepusher/com.agava.webutility.git#3.0.0",
     "com.agava.yandexgames": "https://github.com/forcepusher/com.agava.yandexgames.git#13.0.0",
     "com.unity.collab-proxy": "1.17.6",

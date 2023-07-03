@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Runtime.InteropServices;
-using SimpleJSON;
+using Agava.YandexGames;
 using UnityEngine;
 
 [System.Serializable]
@@ -12,7 +11,7 @@ public class PlayerData
 
 public class Progress : MonoBehaviour
 {
-    private float _topRangeInWorld;
+    private float _topRangeInWorld = 0;
 
     public PlayerData PlayerData;
 
@@ -27,8 +26,6 @@ public class Progress : MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
-            LoadData();
-            GetTopRange();
         }
         else
         {
@@ -36,29 +33,20 @@ public class Progress : MonoBehaviour
         }
     }
 
-    public void Save()
+    public static void Save()
     {
-        string json = JsonUtility.ToJson(PlayerData);
-        SaveData(json);
+        if(PlayerAccount.IsAuthorized)
+            PlayerAccount.SetCloudSaveData(JsonUtility.ToJson(Instance.PlayerData));
     }
 
-    public void SetPlayerData(string value)
+    public static void SetData(string json)
     {
-        PlayerData = JsonUtility.FromJson<PlayerData>(value);
+        Instance.PlayerData = JsonUtility.FromJson<PlayerData>(json);
     }
 
-    public void SetTopRange(string jsonString)
+    public static void SetWorldRecord(int value)
     {
-       var json = JSON.Parse(jsonString);
-        _topRangeInWorld = json["entries"][0]["score"];
+        Instance._topRangeInWorld = value;
     }
 
-    [DllImport("__Internal")]
-    private static extern void SaveData(string date);
-
-    [DllImport("__Internal")]
-    private static extern string LoadData();
-
-    [DllImport("__Internal")]
-    private static extern string GetTopRange();
 }

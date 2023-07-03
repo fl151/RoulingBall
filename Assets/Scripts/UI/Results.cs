@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using Agava.YandexGames;
 using UnityEngine;
 
 public class Results : MonoBehaviour
@@ -12,6 +12,9 @@ public class Results : MonoBehaviour
     [SerializeField] private GameStatesControler _gameControler;
     [SerializeField] private PlayerRange _playerRange;
     [SerializeField] private DiamondsCollector _dimondsCollector;
+
+    private const string _maxRangeLeaderbordTitle = "MaxRange";
+    private const string _diamondsLeaderbordTitle = "Diamonds";
 
     private void OnEnable()
     {
@@ -26,37 +29,37 @@ public class Results : MonoBehaviour
     private void OnGameFinished()
     {
         Progress.Instance.PlayerData.Diamonds += _dimondsCollector.Count;
-        SetToLeaderboardDiamonds(Progress.Instance.PlayerData.Diamonds);
+
+        if (PlayerAccount.IsAuthorized)
+        {
+            Leaderboard.SetScore(_diamondsLeaderbordTitle, Progress.Instance.PlayerData.Diamonds);
+        }
 
         float range = _playerRange.NewRange;
 
         if (range >= Progress.Instance.WorldRecordRange)
         {
             _worldRecordCanvas.SetActive(true);
-
-            SaveResults(range);
+            SetNewRangeRecord((int)range);
         }
         else if (Progress.Instance.PlayerData.MaxRange < range)
         {
             _newRecordCanvas.SetActive(true);
-
-            SaveResults(range);
+            SetNewRangeRecord((int)range);
         }
         else
         {
             _defaultCanvas.SetActive(true);
-        }   
+        }
+
+        Progress.Save();
     }
 
-    private void SaveResults(float range)
+    private void SetNewRangeRecord(int value)
     {
-        Progress.Instance.PlayerData.MaxRange = range;
-        SetToLeaderboardRange(range);
+        Progress.Instance.PlayerData.MaxRange = value;
+
+        if (PlayerAccount.IsAuthorized)
+            Leaderboard.SetScore(_maxRangeLeaderbordTitle, value);
     }
-
-    [DllImport("__Internal")]
-    private static extern void SetToLeaderboardRange(float value);
-
-    [DllImport("__Internal")]
-    private static extern void SetToLeaderboardDiamonds(int value);
 }
