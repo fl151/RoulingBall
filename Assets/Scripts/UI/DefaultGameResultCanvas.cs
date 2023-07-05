@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class DefaultGameResultCanvas : MonoBehaviour
 {
-    private const string _mainSceneTitle = "Main";
+    private const int _mainSceneIndex = 0;
 
     private TMP_Text _text;
     private Button _button;
@@ -32,6 +32,6 @@ public class DefaultGameResultCanvas : MonoBehaviour
 
     private void OnButtonClick()
     {
-        SceneManager.LoadScene(_mainSceneTitle);
+        SceneManager.LoadScene(_mainSceneIndex);
     }
 }

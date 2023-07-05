@@ -7,20 +7,16 @@ public class PlayerRange : MonoBehaviour
     private float _startZ;
     private float _finishZ;
 
-    private float _newPlayerRange;
-
-    public float NewRange => _newPlayerRange;
+    public int NewRange => (int)(GetNewRange() * 10);
 
     private void OnEnable()
     {
         _gameController.PlayerFinish += OnPlayerFinish;
-        _gameController.GameFinished += OnGameFinished;
     }
 
     private void OnDisable()
     {
         _gameController.PlayerFinish -= OnPlayerFinish;
-        _gameController.GameFinished -= OnGameFinished;
     }
 
     private void OnPlayerFinish()
@@ -28,10 +24,11 @@ public class PlayerRange : MonoBehaviour
         _startZ = transform.position.z;
     }
 
-    private void OnGameFinished()
+    private float GetNewRange()
     {
         _finishZ = transform.position.z;
-        _newPlayerRange = _finishZ - _startZ;
+
+        return _finishZ - _startZ;
     }
 
 }

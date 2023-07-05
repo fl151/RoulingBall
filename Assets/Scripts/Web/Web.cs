@@ -35,6 +35,11 @@ public class Web : MonoBehaviour
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
     }
 
+    private static void UpdateWorldRecord()
+    {
+        Leaderboard.GetEntries(_maxRangeLeaderbordTitle, SetTopRange);
+    }
+
     private void OnInBackgroundChange(bool inBackground)
     {
         AudioListener.pause = inBackground;
@@ -52,7 +57,7 @@ public class Web : MonoBehaviour
     {
         AuthAccount();
 
-        Leaderboard.GetEntries(_maxRangeLeaderbordTitle, SetTopRange, null, 1);
+        UpdateWorldRecord();
     }
 
     private void AuthAccount()
@@ -61,21 +66,30 @@ public class Web : MonoBehaviour
         {
             PlayerAccount.Authorize(OnPlayerAuth);
         }
+        else
+        {
+            OnPlayerAuth();
+        }
     }
 
-    private void SetTopRange(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
+    private static void SetTopRange(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
     {
-        if (leaderboardGetEntriesResponse.entries.Length != 0)
-            Progress.SetWorldRecord(leaderboardGetEntriesResponse.entries[0].score);
-    }
-
-    private void SetData(string json)
-    {
-        Progress.SetData(json);
+        Progress.SetWorldRecord(leaderboardGetEntriesResponse.entries[0].score);
     }
 
     private void OnPlayerAuth()
     {
-        PlayerAccount.GetCloudSaveData(SetData);
+        PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
+
+        if (PlayerAccount.HasPersonalProfileDataPermission == false && Progress.Instance.PlayerData.IsAskedAboutPersonalData == false)
+        {
+            PlayerAccount.RequestPersonalProfileDataPermission();
+
+            Progress.Instance.PlayerData.IsAskedAboutPersonalData = true;
+
+            Progress.SaveDataCloud();
+
+            PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
+        } 
     }
 }

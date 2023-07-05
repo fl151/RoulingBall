@@ -35,31 +35,34 @@ public class Results : MonoBehaviour
             Leaderboard.SetScore(_diamondsLeaderbordTitle, Progress.Instance.PlayerData.Diamonds);
         }
 
-        float range = _playerRange.NewRange;
+        int range = _playerRange.NewRange;
 
-        if (range >= Progress.Instance.WorldRecordRange)
+        if (range > Progress.Instance.WorldRecordRange)
         {
             _worldRecordCanvas.SetActive(true);
-            SetNewRangeRecord((int)range);
+            SetNewRangeRecord(range);
         }
         else if (Progress.Instance.PlayerData.MaxRange < range)
         {
             _newRecordCanvas.SetActive(true);
-            SetNewRangeRecord((int)range);
+            SetNewRangeRecord(range);
         }
         else
         {
             _defaultCanvas.SetActive(true);
         }
 
-        Progress.Save();
+        Progress.SaveDataCloud();
     }
 
     private void SetNewRangeRecord(int value)
     {
         Progress.Instance.PlayerData.MaxRange = value;
 
+        if (Progress.Instance.WorldRecordRange < value)
+            Progress.SetWorldRecord(value);
+
         if (PlayerAccount.IsAuthorized)
-            Leaderboard.SetScore(_maxRangeLeaderbordTitle, value);
+            Leaderboard.SetScore(_maxRangeLeaderbordTitle, Progress.Instance.PlayerData.MaxRange);
     }
 }

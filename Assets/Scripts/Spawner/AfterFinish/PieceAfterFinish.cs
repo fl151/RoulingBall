@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ColorChanger), typeof(TextChanger))]
+[RequireComponent(typeof(ColorChanger))]
 public class PieceAfterFinish : PieceOfRoad
 {
 }

@@ -1,23 +1,22 @@
-using System.Collections;
 using Agava.YandexGames;
 using UnityEngine;
 
-[System.Serializable]
 public class PlayerData
 {
-    public float MaxRange;
+    public int MaxRange;
     public int Diamonds;
+    public bool IsAskedAboutPersonalData;
 }
 
 public class Progress : MonoBehaviour
 {
-    private float _topRangeInWorld = 0;
+    private int _topRangeInWorld;
 
     public PlayerData PlayerData;
 
     public static Progress Instance;
 
-    public float WorldRecordRange => _topRangeInWorld;
+    public int WorldRecordRange => _topRangeInWorld;
 
     private void Awake()
     {
@@ -33,13 +32,13 @@ public class Progress : MonoBehaviour
         }
     }
 
-    public static void Save()
+    public static void SaveDataCloud()
     {
         if(PlayerAccount.IsAuthorized)
             PlayerAccount.SetCloudSaveData(JsonUtility.ToJson(Instance.PlayerData));
     }
 
-    public static void SetData(string json)
+    public static void SetDataFromJSON(string json)
     {
         Instance.PlayerData = JsonUtility.FromJson<PlayerData>(json);
     }
