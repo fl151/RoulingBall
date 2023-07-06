@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Web : MonoBehaviour
 {
-    private const string _maxRangeLeaderbordTitle = "MaxRange";
+    private const string _maxRangeLeaderbordTitle = "LongestRange";
 
     public static Web Instance;
 
@@ -74,7 +74,8 @@ public class Web : MonoBehaviour
 
     private static void SetTopRange(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
     {
-        Progress.SetWorldRecord(leaderboardGetEntriesResponse.entries[0].score);
+        if (leaderboardGetEntriesResponse.entries[0] != null)
+            Progress.SetWorldRecord(leaderboardGetEntriesResponse.entries[0].score);
     }
 
     private void OnPlayerAuth()
@@ -90,6 +91,6 @@ public class Web : MonoBehaviour
             Progress.SaveDataCloud();
 
             PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
-        } 
+        }
     }
 }

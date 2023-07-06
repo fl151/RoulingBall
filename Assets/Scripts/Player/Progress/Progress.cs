@@ -47,5 +47,4 @@ public class Progress : MonoBehaviour
     {
         Instance._topRangeInWorld = value;
     }
-
 }

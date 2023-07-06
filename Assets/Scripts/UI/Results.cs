@@ -13,7 +13,7 @@ public class Results : MonoBehaviour
     [SerializeField] private PlayerRange _playerRange;
     [SerializeField] private DiamondsCollector _dimondsCollector;
 
-    private const string _maxRangeLeaderbordTitle = "MaxRange";
+    private const string _maxRangeLeaderbordTitle = "LongestRange";
     private const string _diamondsLeaderbordTitle = "Diamonds";
 
     private void OnEnable()
