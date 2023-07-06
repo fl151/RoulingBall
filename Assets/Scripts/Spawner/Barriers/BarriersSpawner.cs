@@ -38,9 +38,6 @@ public class BarriersSpawner : MonoBehaviour
         Color color = _colorsAfterFinish[_indexCurrentPieceAfterFinish % _colorsAfterFinish.Length];
         piece.GetComponent<ColorChanger>().SetColor(color);
 
-        int text = (_indexCurrentPieceAfterFinish + 1) * 10;
-        piece.GetComponent<TextChanger>().SetText(text + "");
-
         _indexCurrentPieceAfterFinish++;
     }
 

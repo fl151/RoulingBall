@@ -20,4 +20,5 @@ public class DiamondsCollector : MonoBehaviour
             DiamondTaken?.Invoke();
         }
     }
+
 }

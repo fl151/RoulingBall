@@ -1,0 +1,68 @@
+using System.Collections;
+using System.Collections.Generic;
+using Agava.YandexGames;
+using UnityEngine;
+
+public class Results : MonoBehaviour
+{
+    [SerializeField] private GameObject _defaultCanvas;
+    [SerializeField] private GameObject _newRecordCanvas;
+    [SerializeField] private GameObject _worldRecordCanvas;
+
+    [SerializeField] private GameStatesControler _gameControler;
+    [SerializeField] private PlayerRange _playerRange;
+    [SerializeField] private DiamondsCollector _dimondsCollector;
+
+    private const string _maxRangeLeaderbordTitle = "LongestRange";
+    private const string _diamondsLeaderbordTitle = "Diamonds";
+
+    private void OnEnable()
+    {
+        _gameControler.GameFinished += OnGameFinished;
+    }
+
+    private void OnDisable()
+    {
+        _gameControler.GameFinished -= OnGameFinished;
+    }
+
+    private void OnGameFinished()
+    {
+        Progress.Instance.PlayerData.Diamonds += _dimondsCollector.Count;
+
+        if (PlayerAccount.IsAuthorized)
+        {
+            Leaderboard.SetScore(_diamondsLeaderbordTitle, Progress.Instance.PlayerData.Diamonds);
+        }
+
+        int range = _playerRange.NewRange;
+
+        if (range > Progress.Instance.WorldRecordRange)
+        {
+            _worldRecordCanvas.SetActive(true);
+            SetNewRangeRecord(range);
+        }
+        else if (Progress.Instance.PlayerData.MaxRange < range)
+        {
+            _newRecordCanvas.SetActive(true);
+            SetNewRangeRecord(range);
+        }
+        else
+        {
+            _defaultCanvas.SetActive(true);
+        }
+
+        Progress.SaveDataCloud();
+    }
+
+    private void SetNewRangeRecord(int value)
+    {
+        Progress.Instance.PlayerData.MaxRange = value;
+
+        if (Progress.Instance.WorldRecordRange < value)
+            Progress.SetWorldRecord(value);
+
+        if (PlayerAccount.IsAuthorized)
+            Leaderboard.SetScore(_maxRangeLeaderbordTitle, Progress.Instance.PlayerData.MaxRange);
+    }
+}
