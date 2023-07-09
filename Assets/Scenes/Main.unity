@@ -1339,9 +1339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986de5088e39ba84483762850426fcce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData:
-    MaxRange: 0
-    Diamonds: 0
 --- !u!1 &557291500
 GameObject:
   m_ObjectHideFlags: 0

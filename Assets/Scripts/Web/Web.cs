@@ -1,7 +1,10 @@
 using System.Collections;
 using Agava.WebUtility;
-using Agava.YandexGames;
 using UnityEngine;
+
+#if YANDEX_SDK
+using Agava.YandexGames;
+#endif
 
 public class Web : MonoBehaviour
 {
@@ -21,8 +24,9 @@ public class Web : MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
-
-            StartCoroutine(InitializeYandex());
+#if YANDEX_SDK
+            YandexGamesSdk.Initialize(OnYandexInitialized());
+#endif
         }
         else
         {
@@ -35,22 +39,10 @@ public class Web : MonoBehaviour
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
     }
 
-    private static void UpdateWorldRecord()
-    {
-        Leaderboard.GetEntries(_maxRangeLeaderbordTitle, SetTopRange);
-    }
-
     private void OnInBackgroundChange(bool inBackground)
     {
         AudioListener.pause = inBackground;
         AudioListener.volume = inBackground ? 0f : 1f;
-    }
-
-    private IEnumerator InitializeYandex()
-    {
-        yield return YandexGamesSdk.Initialize();
-
-        OnYandexInitialized();
     }
 
     private void OnYandexInitialized()
@@ -62,6 +54,7 @@ public class Web : MonoBehaviour
 
     private void AuthAccount()
     {
+#if YANDEX_SDK
         if (PlayerAccount.IsAuthorized == false)
         {
             PlayerAccount.Authorize(OnPlayerAuth);
@@ -70,16 +63,12 @@ public class Web : MonoBehaviour
         {
             OnPlayerAuth();
         }
-    }
-
-    private static void SetTopRange(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
-    {
-        if (leaderboardGetEntriesResponse.entries[0] != null)
-            Progress.SetWorldRecord(leaderboardGetEntriesResponse.entries[0].score);
+#endif
     }
 
     private void OnPlayerAuth()
     {
+#if YANDEX_SDK
         PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
 
         if (PlayerAccount.HasPersonalProfileDataPermission == false && Progress.Instance.PlayerData.IsAskedAboutPersonalData == false)
@@ -92,5 +81,16 @@ public class Web : MonoBehaviour
 
             PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
         }
+#endif
+    }
+
+    private static void UpdateWorldRecord()
+    {
+#if YANDEX_SDK
+        Leaderboard.GetEntries(_maxRangeLeaderbordTitle,  (response) =>
+        {
+            Progress.SetWorldRecord(response.entries[0].score);
+        });
+#endif
     }
 }
