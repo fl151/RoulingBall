@@ -1,8 +1,5 @@
 using UnityEngine;
-
-#if YANDEX_SDK
 using Agava.YandexGames;
-#endif
 
 public class Results : MonoBehaviour
 {
@@ -31,11 +28,6 @@ public class Results : MonoBehaviour
     {
         Progress.Instance.PlayerData.Diamonds += _dimondsCollector.Count;
 
-#if YANDEX_SDK
-        if (PlayerAccount.IsAuthorized)
-            Leaderboard.SetScore(_diamondsLeaderbordTitle, Progress.Instance.PlayerData.Diamonds);
-#endif
-
         int range = _playerRange.NewRange;
 
         if (range > Progress.Instance.WorldRecordRange)
@@ -63,12 +55,10 @@ public class Results : MonoBehaviour
         if (Progress.Instance.WorldRecordRange < value)
             Progress.SetWorldRecord(value);
 
-#if YANDEX_SDK
         if (PlayerAccount.IsAuthorized)
         {
             Leaderboard.SetScore(_maxRangeLeaderbordTitle, value);
 
         }
-#endif
     }
 }

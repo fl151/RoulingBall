@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class DefaultGameResultCanvas : MonoBehaviour
 {
-    private const int _mainSceneIndex = 0;
+    private const int _mainSceneIndex = 1;
 
     private TMP_Text _text;
     private Button _button;

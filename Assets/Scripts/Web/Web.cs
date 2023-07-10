@@ -1,10 +1,6 @@
-using System.Collections;
 using Agava.WebUtility;
 using UnityEngine;
-
-#if YANDEX_SDK
 using Agava.YandexGames;
-#endif
 
 public class Web : MonoBehaviour
 {
@@ -24,9 +20,7 @@ public class Web : MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
-#if YANDEX_SDK
-            YandexGamesSdk.Initialize(OnYandexInitialized());
-#endif
+            OnYandexInitialized();
         }
         else
         {
@@ -54,7 +48,6 @@ public class Web : MonoBehaviour
 
     private void AuthAccount()
     {
-#if YANDEX_SDK
         if (PlayerAccount.IsAuthorized == false)
         {
             PlayerAccount.Authorize(OnPlayerAuth);
@@ -63,12 +56,10 @@ public class Web : MonoBehaviour
         {
             OnPlayerAuth();
         }
-#endif
     }
 
     private void OnPlayerAuth()
     {
-#if YANDEX_SDK
         PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
 
         if (PlayerAccount.HasPersonalProfileDataPermission == false && Progress.Instance.PlayerData.IsAskedAboutPersonalData == false)
@@ -81,16 +72,13 @@ public class Web : MonoBehaviour
 
             PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
         }
-#endif
     }
 
     private static void UpdateWorldRecord()
     {
-#if YANDEX_SDK
         Leaderboard.GetEntries(_maxRangeLeaderbordTitle,  (response) =>
         {
             Progress.SetWorldRecord(response.entries[0].score);
         });
-#endif
     }
 }
