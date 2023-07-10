@@ -1,7 +1,6 @@
-using System.Collections;
 using Agava.WebUtility;
-using Agava.YandexGames;
 using UnityEngine;
+using Agava.YandexGames;
 
 public class Web : MonoBehaviour
 {
@@ -21,8 +20,7 @@ public class Web : MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
-
-            StartCoroutine(InitializeYandex());
+            OnYandexInitialized();
         }
         else
         {
@@ -35,22 +33,10 @@ public class Web : MonoBehaviour
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
     }
 
-    private static void UpdateWorldRecord()
-    {
-        Leaderboard.GetEntries(_maxRangeLeaderbordTitle, SetTopRange);
-    }
-
     private void OnInBackgroundChange(bool inBackground)
     {
         AudioListener.pause = inBackground;
         AudioListener.volume = inBackground ? 0f : 1f;
-    }
-
-    private IEnumerator InitializeYandex()
-    {
-        yield return YandexGamesSdk.Initialize();
-
-        OnYandexInitialized();
     }
 
     private void OnYandexInitialized()
@@ -72,12 +58,6 @@ public class Web : MonoBehaviour
         }
     }
 
-    private static void SetTopRange(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
-    {
-        if (leaderboardGetEntriesResponse.entries[0] != null)
-            Progress.SetWorldRecord(leaderboardGetEntriesResponse.entries[0].score);
-    }
-
     private void OnPlayerAuth()
     {
         PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
@@ -92,5 +72,13 @@ public class Web : MonoBehaviour
 
             PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
         }
+    }
+
+    private static void UpdateWorldRecord()
+    {
+        Leaderboard.GetEntries(_maxRangeLeaderbordTitle,  (response) =>
+        {
+            Progress.SetWorldRecord(response.entries[0].score);
+        });
     }
 }

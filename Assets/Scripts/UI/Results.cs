@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using Agava.YandexGames;
 using UnityEngine;
+using Agava.YandexGames;
 
 public class Results : MonoBehaviour
 {
+    private const string _maxRangeLeaderbordTitle = "LongestRange";
+    private const string _diamondsLeaderbordTitle = "Diamonds";
+
     [SerializeField] private GameObject _defaultCanvas;
     [SerializeField] private GameObject _newRecordCanvas;
     [SerializeField] private GameObject _worldRecordCanvas;
@@ -12,9 +13,6 @@ public class Results : MonoBehaviour
     [SerializeField] private GameStatesControler _gameControler;
     [SerializeField] private PlayerRange _playerRange;
     [SerializeField] private DiamondsCollector _dimondsCollector;
-
-    private const string _maxRangeLeaderbordTitle = "LongestRange";
-    private const string _diamondsLeaderbordTitle = "Diamonds";
 
     private void OnEnable()
     {
@@ -29,11 +27,6 @@ public class Results : MonoBehaviour
     private void OnGameFinished()
     {
         Progress.Instance.PlayerData.Diamonds += _dimondsCollector.Count;
-
-        if (PlayerAccount.IsAuthorized)
-        {
-            Leaderboard.SetScore(_diamondsLeaderbordTitle, Progress.Instance.PlayerData.Diamonds);
-        }
 
         int range = _playerRange.NewRange;
 
@@ -63,6 +56,9 @@ public class Results : MonoBehaviour
             Progress.SetWorldRecord(value);
 
         if (PlayerAccount.IsAuthorized)
-            Leaderboard.SetScore(_maxRangeLeaderbordTitle, Progress.Instance.PlayerData.MaxRange);
+        {
+            Leaderboard.SetScore(_maxRangeLeaderbordTitle, value);
+
+        }
     }
 }

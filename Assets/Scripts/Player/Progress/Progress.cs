@@ -1,5 +1,5 @@
-using Agava.YandexGames;
 using UnityEngine;
+using Agava.YandexGames;
 
 public class PlayerData
 {
@@ -34,13 +34,15 @@ public class Progress : MonoBehaviour
 
     public static void SaveDataCloud()
     {
-        if(PlayerAccount.IsAuthorized)
+        if (PlayerAccount.IsAuthorized)
             PlayerAccount.SetCloudSaveData(JsonUtility.ToJson(Instance.PlayerData));
     }
 
     public static void SetDataFromJSON(string json)
     {
-        Instance.PlayerData = JsonUtility.FromJson<PlayerData>(json);
+        PlayerData data = JsonUtility.FromJson<PlayerData>(json);
+
+        Instance.PlayerData = data;
     }
 
     public static void SetWorldRecord(int value)
