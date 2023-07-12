@@ -28,7 +28,7 @@ public class Results : MonoBehaviour
     {
         Progress.Instance.PlayerData.Diamonds += _dimondsCollector.Count;
 
-        int range = _playerRange.NewRange;
+        int range = _playerRange.CurrentRange;
 
         if (range > Progress.Instance.WorldRecordRange)
         {

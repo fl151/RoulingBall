@@ -9,8 +9,10 @@ public class DefaultGameResultCanvas : MonoBehaviour
 {
     private const int _mainSceneIndex = 1;
 
-    private TMP_Text _text;
-    private Button _button;
+    [SerializeField] private TMP_Text _diamondsCount;
+    [SerializeField] private TMP_Text _range;
+    [SerializeField] private Button _button;
+    [SerializeField] private PlayerRange _playerRange;
 
     private void OnEnable()
     {
@@ -20,9 +22,11 @@ public class DefaultGameResultCanvas : MonoBehaviour
 
     private void Start()
     {
-        _text = GetComponentInChildren<DiamondsCount>().GetComponent<TMP_Text>();
+        _diamondsCount = GetComponentInChildren<DiamondsCount>().GetComponent<TMP_Text>();
 
-        _text.text = Progress.Instance.PlayerData.Diamonds.ToString();
+        _diamondsCount.text = Progress.Instance.PlayerData.Diamonds.ToString();
+
+        _range.text = _playerRange.CurrentRange.ToString();
     }
 
     private void OnDisable()

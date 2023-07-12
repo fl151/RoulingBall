@@ -1,12 +1,15 @@
 using Agava.WebUtility;
 using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine.Events;
 
 public class Web : MonoBehaviour
 {
     private const string _maxRangeLeaderbordTitle = "LongestRange";
 
     public static Web Instance;
+
+    public static event UnityAction<LeaderboardGetEntriesResponse> EntriesLoaded;
 
     private void OnEnable()
     {
@@ -41,9 +44,9 @@ public class Web : MonoBehaviour
 
     private void OnYandexInitialized()
     {
-        AuthAccount();
+        LoadEntries();
 
-        UpdateWorldRecord();
+        AuthAccount();
     }
 
     private void AuthAccount()
@@ -74,11 +77,13 @@ public class Web : MonoBehaviour
         }
     }
 
-    private static void UpdateWorldRecord()
+    private static void LoadEntries()
     {
         Leaderboard.GetEntries(_maxRangeLeaderbordTitle,  (response) =>
         {
             Progress.SetWorldRecord(response.entries[0].score);
+
+            EntriesLoaded?.Invoke(response);
         });
     }
 }
