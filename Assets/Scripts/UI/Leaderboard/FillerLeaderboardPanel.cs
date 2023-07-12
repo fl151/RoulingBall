@@ -5,19 +5,27 @@ using UnityEngine;
 
 public class FillerLeaderboardPanel : MonoBehaviour
 {
+    private const string _maxRangeLeaderbordTitle = "LongestRange";
+
     [SerializeField] private GameObject _prefabPlayerInfo;
     [SerializeField] private Transform _panelParent;
 
     [SerializeField] private Color[] _colorsFill;
 
-    private void Awake()
+    private void OnEnable()
     {
-        Web.EntriesLoaded += SetEntryes;
+        if(_panelParent.childCount == 0)
+            LoadEntries();
     }
 
-    private void OnDisable()
+    private void LoadEntries()
     {
-        Web.EntriesLoaded -= SetEntryes;
+        Leaderboard.GetEntries(_maxRangeLeaderbordTitle, (response) =>
+        {
+            Progress.SetWorldRecord(response.entries[0].score);
+
+            SetEntryes(response);
+        });
     }
 
     private void SetEntryes(LeaderboardGetEntriesResponse response)

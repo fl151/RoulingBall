@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Web : MonoBehaviour
 {
-    private const string _maxRangeLeaderbordTitle = "LongestRange";
+    private static LeaderboardGetEntriesResponse _response;
 
     public static Web Instance;
 
@@ -31,6 +31,12 @@ public class Web : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if(_response != null)
+            EntriesLoaded?.Invoke(_response);
+    }
+
     private void OnDisable()
     {
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
@@ -44,8 +50,6 @@ public class Web : MonoBehaviour
 
     private void OnYandexInitialized()
     {
-        LoadEntries();
-
         AuthAccount();
     }
 
@@ -75,15 +79,5 @@ public class Web : MonoBehaviour
 
             PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
         }
-    }
-
-    private static void LoadEntries()
-    {
-        Leaderboard.GetEntries(_maxRangeLeaderbordTitle,  (response) =>
-        {
-            Progress.SetWorldRecord(response.entries[0].score);
-
-            EntriesLoaded?.Invoke(response);
-        });
-    }
+    } 
 }

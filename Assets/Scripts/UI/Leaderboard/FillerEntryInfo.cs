@@ -17,13 +17,13 @@ public class FillerEntryInfo : MonoBehaviour
 
     public void Fill(string name, int score, string pictureURL)
     {
-        if (name != null && name != "")
-            _name.text = name;
-        else
+        if (string.IsNullOrEmpty(name))
             _name.text = _playerText;
+        else
+            _name.text = name;
 
         _score.text = score.ToString();
-        _slider.value = ((float)score) / Progress.Instance.WorldRecordRange;
+        _slider.value = (float)score / Progress.Instance.WorldRecordRange;
 
         StartCoroutine(LoadImage(pictureURL));
     }
@@ -35,10 +35,13 @@ public class FillerEntryInfo : MonoBehaviour
 
     private IEnumerator LoadImage(string url)
     {
-        UnityWebRequest request = new UnityWebRequest(url);
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
 
-        yield return request;
+        yield return request.SendWebRequest();
 
-        _icon.texture = DownloadHandlerTexture.GetContent(request);
+        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            Debug.Log(request.error);
+        else
+            _icon.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
     }
 }
