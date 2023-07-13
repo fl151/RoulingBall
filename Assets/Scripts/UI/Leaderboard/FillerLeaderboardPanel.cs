@@ -9,6 +9,7 @@ public class FillerLeaderboardPanel : MonoBehaviour
 
     [SerializeField] private GameObject _prefabPlayerInfo;
     [SerializeField] private Transform _panelParent;
+    [SerializeField] private FillerEntryInfo _playerEntry;
 
     [SerializeField] private Color[] _colorsFill;
 
@@ -16,6 +17,14 @@ public class FillerLeaderboardPanel : MonoBehaviour
     {
         if(_panelParent.childCount == 0)
             LoadEntries();
+
+        Leaderboard.GetPlayerEntry(_maxRangeLeaderbordTitle, (response) =>
+        {
+            if (response != null)
+                _playerEntry.Fill("You", response.score, response.player.profilePicture);
+            else
+                _playerEntry.gameObject.SetActive(false);
+        });
     }
 
     private void LoadEntries()
