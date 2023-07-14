@@ -15,6 +15,18 @@ public class FillerEntryInfo : MonoBehaviour
     [SerializeField] private Image _fill;
     [SerializeField] private RawImage _icon;
 
+    private string _imageURL;
+    private bool isImageLoaded = false;
+
+    private void Update()
+    {
+        if(string.IsNullOrEmpty(_imageURL) == false && isImageLoaded == false)
+        {
+            StartCoroutine(LoadImage(_imageURL));
+            isImageLoaded = true;
+        }
+    }
+
     public void Fill(string name, int score, string pictureURL)
     {
         if (string.IsNullOrEmpty(name))
@@ -25,7 +37,7 @@ public class FillerEntryInfo : MonoBehaviour
         _score.text = score.ToString();
         _slider.value = (float)score / Progress.Instance.WorldRecordRange;
 
-        StartCoroutine(LoadImage(pictureURL));
+        _imageURL = pictureURL;
     }
 
     public void SetFillColor(Color color)

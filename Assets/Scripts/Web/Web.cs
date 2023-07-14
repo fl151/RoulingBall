@@ -67,16 +67,7 @@ public class Web : MonoBehaviour
 
     private void OnPlayerAuth()
     {
-        PlayerAccount.GetCloudSaveData((data) => Progress.SetDataFromJSON(data));
-
-        if (PlayerAccount.HasPersonalProfileDataPermission == false && Progress.Instance.PlayerData.IsAskedAboutPersonalData == false)
-        {
-            PlayerAccount.RequestPersonalProfileDataPermission();
-
-            Progress.Instance.PlayerData.IsAskedAboutPersonalData = true;
-
-            Progress.SaveDataCloud();
-        }
+        PlayerAccount.RequestPersonalProfileDataPermission();
 
         PlayerAccount.GetCloudSaveData((data) => Progress.SetDataFromJSON(data));
     } 

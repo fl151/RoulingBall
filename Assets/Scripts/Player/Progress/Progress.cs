@@ -5,7 +5,6 @@ public class PlayerData
 {
     public int MaxRange;
     public int Diamonds;
-    public bool IsAskedAboutPersonalData;
 }
 
 public class Progress : MonoBehaviour
