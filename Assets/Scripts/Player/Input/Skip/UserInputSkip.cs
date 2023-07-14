@@ -2,13 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class UserInputFinish : MonoBehaviour
+public class UserInputSkip : MonoBehaviour
 {
-    private const float _delay = 0.5f;
+    private const float _delay = 0.25f;
 
     private bool _isDelayFinished = false;
 
-    public event UnityAction UserFindSpeed;
+    public event UnityAction PlayerInteract;
 
     private void Start()
     {
@@ -17,9 +17,12 @@ public class UserInputFinish : MonoBehaviour
 
     private void Update()
     {
-        if (_isDelayFinished&& (Input.touchCount > 0 || Input.anyKey))
+        if (_isDelayFinished)
         {
-            UserFindSpeed?.Invoke();
+            if (Application.isMobilePlatform && Input.touchCount > 0 || Input.anyKey)
+            {
+                PlayerInteract?.Invoke();
+            }
         }
     }
 

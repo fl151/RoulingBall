@@ -9,13 +9,12 @@ public class DefaultGameResultCanvas : MonoBehaviour
 
     [SerializeField] private TMP_Text _diamondsCount;
     [SerializeField] private TMP_Text _range;
-    [SerializeField] private Button _button;
     [SerializeField] private PlayerRange _playerRange;
+    [SerializeField] private Button _playAgainButton;
 
     private void OnEnable()
     {
-        _button = GetComponentInChildren<Button>();
-        _button.onClick.AddListener(OnButtonClick);
+        _playAgainButton.onClick.AddListener(OnButtonClicked);
     }
 
     private void Start()
@@ -29,10 +28,10 @@ public class DefaultGameResultCanvas : MonoBehaviour
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnButtonClick);
+        _playAgainButton.onClick.RemoveListener(OnButtonClicked);
     }
 
-    private void OnButtonClick()
+    private void OnButtonClicked()
     {
         SceneManager.LoadScene(_mainSceneIndex);
     }

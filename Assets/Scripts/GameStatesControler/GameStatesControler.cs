@@ -8,9 +8,9 @@ public class GameStatesControler : MonoBehaviour
     [SerializeField] private UserInput _mobileInput;
     [SerializeField] private UserInput _decktopInput;
     [SerializeField] private HUDChanger _hudsChanger;
-    [SerializeField] private Button _tryAgainButton;
+    [SerializeField] private UserInputSkip _tryAgainCanvas;
     [SerializeField] private Player _player;
-    [SerializeField] private UserInputFinish _inputFinish;
+    [SerializeField] private UserInputSkip _findSpeedCanvas;
     [SerializeField] private ThingsDroper _thingsDroper;
 
     private const string _mainSceneTitle = "Main";
@@ -26,12 +26,12 @@ public class GameStatesControler : MonoBehaviour
         _mobileInput.FirstContactHappend += OnFirstContactHappened;
         _decktopInput.FirstContactHappend += OnFirstContactHappened;
 
-        _tryAgainButton.onClick.AddListener(OnButtonTryAgainClicked);
+        _tryAgainCanvas.PlayerInteract += OnCanvasTryAgainInteracted;
 
         _player.Died += OnPlayerDied;
         _player.Finish += OnPlayerFinish;
 
-        _inputFinish.UserFindSpeed += OnUserFindSpeed;
+        _findSpeedCanvas.PlayerInteract += OnUserFindSpeed;
 
         _thingsDroper.ThingsFinished += OnThingsFinished;
     }
@@ -41,17 +41,17 @@ public class GameStatesControler : MonoBehaviour
         _mobileInput.FirstContactHappend -= OnFirstContactHappened;
         _decktopInput.FirstContactHappend -= OnFirstContactHappened;
 
-        _tryAgainButton.onClick.RemoveListener(OnButtonTryAgainClicked);
+        _tryAgainCanvas.PlayerInteract -= OnCanvasTryAgainInteracted;
 
         _player.Died -= OnPlayerDied;
         _player.Finish += OnPlayerFinish;
 
-        _inputFinish.UserFindSpeed -= OnUserFindSpeed;
+        _findSpeedCanvas.PlayerInteract -= OnUserFindSpeed;
 
         _thingsDroper.ThingsFinished -= OnThingsFinished;
     }
 
-    private void OnButtonTryAgainClicked()
+    private void OnCanvasTryAgainInteracted()
     {
         SceneManager.LoadScene(_mainSceneTitle);
     }
