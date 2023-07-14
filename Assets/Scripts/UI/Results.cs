@@ -4,7 +4,6 @@ using Agava.YandexGames;
 public class Results : MonoBehaviour
 {
     private const string _maxRangeLeaderbordTitle = "LongestRange";
-    private const string _diamondsLeaderbordTitle = "Diamonds";
 
     [SerializeField] private GameObject _defaultCanvas;
     [SerializeField] private GameObject _newRecordCanvas;

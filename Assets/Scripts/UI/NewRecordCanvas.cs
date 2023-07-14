@@ -1,24 +1,24 @@
 using UnityEngine;
-using UnityEngine.UI;
 
+[RequireComponent(typeof(UserInputSkip))]
 public class NewRecordCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject _defaultCanvas;
 
-    private Button _button;
+    private UserInputSkip _input;
 
     private void OnEnable()
     {
-        _button = GetComponentInChildren<Button>();
-        _button.onClick.AddListener(OnButtonClick);
+        _input = GetComponent<UserInputSkip>();
+        _input.PlayerInteract += OnPlayerInteracted;
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnButtonClick);
+        _input.PlayerInteract -= OnPlayerInteracted;
     }
 
-    private void OnButtonClick()
+    private void OnPlayerInteracted()
     {
         _defaultCanvas.SetActive(true);
         gameObject.SetActive(false);
