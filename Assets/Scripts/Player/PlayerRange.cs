@@ -7,7 +7,7 @@ public class PlayerRange : MonoBehaviour
     private float _startZ;
     private float _finishZ;
 
-    public int NewRange => (int)(GetNewRange() * 10);
+    public int CurrentRange => (int)(GetNewRange() * 10);
 
     private void OnEnable()
     {

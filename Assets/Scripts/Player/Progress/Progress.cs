@@ -5,7 +5,6 @@ public class PlayerData
 {
     public int MaxRange;
     public int Diamonds;
-    public bool IsAskedAboutPersonalData;
 }
 
 public class Progress : MonoBehaviour
@@ -40,7 +39,7 @@ public class Progress : MonoBehaviour
 
     public static void SetDataFromJSON(string json)
     {
-        PlayerData data = JsonUtility.FromJson<PlayerData>(json);
+        var data = JsonUtility.FromJson<PlayerData>(json);
 
         Instance.PlayerData = data;
     }

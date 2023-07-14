@@ -1,12 +1,15 @@
 using Agava.WebUtility;
 using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine.Events;
 
 public class Web : MonoBehaviour
 {
-    private const string _maxRangeLeaderbordTitle = "LongestRange";
+    private static LeaderboardGetEntriesResponse _response;
 
     public static Web Instance;
+
+    public static event UnityAction<LeaderboardGetEntriesResponse> EntriesLoaded;
 
     private void OnEnable()
     {
@@ -28,6 +31,12 @@ public class Web : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if(_response != null)
+            EntriesLoaded?.Invoke(_response);
+    }
+
     private void OnDisable()
     {
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
@@ -42,8 +51,6 @@ public class Web : MonoBehaviour
     private void OnYandexInitialized()
     {
         AuthAccount();
-
-        UpdateWorldRecord();
     }
 
     private void AuthAccount()
@@ -60,25 +67,8 @@ public class Web : MonoBehaviour
 
     private void OnPlayerAuth()
     {
-        PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
+        PlayerAccount.RequestPersonalProfileDataPermission();
 
-        if (PlayerAccount.HasPersonalProfileDataPermission == false && Progress.Instance.PlayerData.IsAskedAboutPersonalData == false)
-        {
-            PlayerAccount.RequestPersonalProfileDataPermission();
-
-            Progress.Instance.PlayerData.IsAskedAboutPersonalData = true;
-
-            Progress.SaveDataCloud();
-
-            PlayerAccount.GetCloudSaveData(Progress.SetDataFromJSON);
-        }
-    }
-
-    private static void UpdateWorldRecord()
-    {
-        Leaderboard.GetEntries(_maxRangeLeaderbordTitle,  (response) =>
-        {
-            Progress.SetWorldRecord(response.entries[0].score);
-        });
-    }
+        PlayerAccount.GetCloudSaveData((data) => Progress.SetDataFromJSON(data));
+    } 
 }
