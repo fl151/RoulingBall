@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CosPattern : IPattern
+public class ParabPattern : IPattern
 {
     private float _rangeFromTarget;
     private int _count;
     private float _rangeBetweenThings;
 
-    public CosPattern(PatternSettings settings)
+    public ParabPattern(PatternSettings settings)
     {
         _rangeFromTarget = settings.TargetRange;
         _count = settings.Count;
@@ -25,7 +23,7 @@ public class CosPattern : IPattern
         {
             float z = zFirst + i * _rangeBetweenThings;
 
-            float x = Mathf.Cos(z) * _rangeFromTarget;
+            float x = (z*z / 2.65f - 1) * (-_rangeFromTarget);
 
             positions[i] = new Vector3(x, 0, z);
         }

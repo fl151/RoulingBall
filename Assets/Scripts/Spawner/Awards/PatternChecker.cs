@@ -18,7 +18,7 @@ public class PatternChecker : MonoBehaviour
             {
                 _currentTern = _ternOn;
 
-                _spawner.ExecutPattern(new DiamondPattern(_settings as DiamondsPatternSettings), _template, transform.position);
+                _spawner.ExecutPattern(new ParabPattern(_settings), _template, transform.position);
             }
         }
     }
