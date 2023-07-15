@@ -1,15 +1,10 @@
 using Agava.WebUtility;
 using UnityEngine;
 using Agava.YandexGames;
-using UnityEngine.Events;
 
 public class Web : MonoBehaviour
 {
-    private static LeaderboardGetEntriesResponse _response;
-
     public static Web Instance;
-
-    public static event UnityAction<LeaderboardGetEntriesResponse> EntriesLoaded;
 
     private void OnEnable()
     {
@@ -29,12 +24,6 @@ public class Web : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        if(_response != null)
-            EntriesLoaded?.Invoke(_response);
     }
 
     private void OnDisable()
