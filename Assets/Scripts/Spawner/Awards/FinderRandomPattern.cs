@@ -17,9 +17,9 @@ public class FinderRandomPattern : MonoBehaviour
     private void Awake()
     {
         _centerPatternsThings = new IPattern[] { new LinePattern(_settingsThingsRight), new LinePattern(_settingsThingsLeft),
-                                                 new CosPattern(_settingsThingsRight), new CosPattern(_settingsThingsLeft) };
-        _leftPatternsThings = new IPattern[] { new LinePattern(_settingsThingsLeft), new CosPattern(_settingsThingsLeft) };
-        _rightPatternsThings = new IPattern[] { new LinePattern(_settingsThingsRight), new CosPattern(_settingsThingsRight) };
+                                                 new ParabPattern(_settingsThingsRight), new ParabPattern(_settingsThingsLeft) };
+        _leftPatternsThings = new IPattern[] { new LinePattern(_settingsThingsLeft), new ParabPattern(_settingsThingsLeft) };
+        _rightPatternsThings = new IPattern[] { new LinePattern(_settingsThingsRight), new ParabPattern(_settingsThingsRight) };
 
         foreach (var settings in _settingsDiamonds)
         {

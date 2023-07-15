@@ -23,5 +23,4 @@ public class NewRecordCanvas : MonoBehaviour
         _defaultCanvas.SetActive(true);
         gameObject.SetActive(false);
     }
-
 }
