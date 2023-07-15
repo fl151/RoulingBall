@@ -13975,6 +13975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultCanvas: {fileID: 1812827911}
   _leaderboardCanvas: {fileID: 482212198}
+  _notActiveColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1755008595
 MonoBehaviour:
   m_ObjectHideFlags: 0
