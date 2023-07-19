@@ -5,6 +5,9 @@ public class PlayerData
 {
     public int MaxRange;
     public int Diamonds;
+
+    public bool[] AreSkinsBuåód = new bool[6];
+    public int CurrentSkinIndex = -1;
 }
 
 public class Progress : MonoBehaviour
