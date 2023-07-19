@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1486645071110156361}
   - component: {fileID: 2526031506503385068}
   - component: {fileID: 354292386542963494}
+  - component: {fileID: 6664185594620343753}
   m_Layer: 0
   m_Name: WatermelonSkin
   m_TagString: Untagged
@@ -83,3 +84,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6664185594620343753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299737955065621235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5068cce5c350c40b7393a1bb304bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
