@@ -8,8 +8,6 @@ public class LeaderboardButton : MonoBehaviour
     [SerializeField] private GameObject _defaultCanvas;
     [SerializeField] private GameObject _leaderboardCanvas;
 
-    [SerializeField] private Color _notActiveColor;
-
     private Button _button;
 
     private void Awake()
@@ -19,7 +17,6 @@ public class LeaderboardButton : MonoBehaviour
         if (PlayerAccount.IsAuthorized == false)
         {
             _button.enabled = false;
-            _button.GetComponent<Image>().color = _notActiveColor;
         }
     }
 

@@ -11,24 +11,21 @@ public class Shop : MonoBehaviour
 
     private ShopItem _current;
 
-    private void OnEnable()
-    {
-        UpdateDimonds();
-    }
-
     private void Start()
     {
-        var items = GetComponentsInChildren<ShopItem>();
+        UpdateDimonds();
+
+        var items = GetComponentsInChildren<ShopItem>(true);
 
         for (int i = 0; i < items.Length; i++)
         {
-            items[i].Instantiate(_skinHolder.GetItemInfo(i), i);
+            items[i].Instantiate(_skinHolder.GetItemInfo(i + 1), i);
 
             if (Progress.Instance.PlayerData.AreSkinsBuåód[i])
             {
                 items[i].GetComponent<ItemView>().Buy();
 
-                if (Progress.Instance.PlayerData.CurrentSkinIndex == i)
+                if (Progress.Instance.PlayerData.CurrentSkinIndex - 1 == i)
                 {
                     SetActive(items[i]);
                 }
@@ -47,8 +44,6 @@ public class Shop : MonoBehaviour
 
             Progress.SaveDataCloud();
 
-            item.GetComponent<ItemView>().Buy();
-
             SetItem(item);
 
             return true;
@@ -66,6 +61,9 @@ public class Shop : MonoBehaviour
 
         SetInactiveLast();
         SetActive(item);
+
+        Progress.Instance.PlayerData.CurrentSkinIndex = item.Index + 1;
+        Progress.SaveDataCloud();
     }
 
     private void SetActive(ShopItem item)
@@ -81,7 +79,8 @@ public class Shop : MonoBehaviour
 
     private void SetInactiveLast()
     {
-        _current.GetComponent<ItemView>().SetInactive();
+        if(_current != null)
+            _current.GetComponent<ItemView>().SetInactive();
     }
 
     private void ShowError()

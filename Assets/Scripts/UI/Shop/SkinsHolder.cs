@@ -6,7 +6,7 @@ public class SkinsHolder : MonoBehaviour
 
     public ItemInfo GetItemInfo(int index)
     {
-        if (index >= 0 && index < _itemsInfo.Length)
+        if (index > -1 && index < _itemsInfo.Length)
             return _itemsInfo[index];
         else
             return null;
