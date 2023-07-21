@@ -42,8 +42,6 @@ public class Shop : MonoBehaviour
 
             Progress.Instance.PlayerData.AreSkinsBuåód[item.Index] = true;
 
-            Progress.SaveDataCloud();
-
             SetItem(item);
 
             return true;

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Planete
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: c5d3f18f2fccea546be288e3b9bffe85, type: 3}
-  _price: 1
+  _price: 0
   _prefab: {fileID: -1510132029505118569, guid: 93a43fc43b6dfc742a2d696ece7973d3, type: 3}

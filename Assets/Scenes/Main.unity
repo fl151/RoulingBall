@@ -21307,10 +21307,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 11400000, guid: 5c68ac853af385749bf98c290f586df6, type: 2}
   - {fileID: 11400000, guid: 3b27782c178ecc74fbc4a32f34dece18, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1f2da9a0e62a13d4f8807734e46c9d38, type: 2}
   - {fileID: 11400000, guid: aff395fb2b39d6d41b7ee328dd6627b6, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 66292c347f2ac1b488f7a773d9adc0e6, type: 2}
+  - {fileID: 11400000, guid: 62985b5c8535c434bbaa6c29858875fc, type: 2}
 --- !u!4 &2117081675
 Transform:
   m_ObjectHideFlags: 0

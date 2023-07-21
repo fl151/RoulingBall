@@ -7,7 +7,23 @@ public class PlayerSkinView : MonoBehaviour
 
     private GameObject _currentSkin;
 
+    private void OnEnable()
+    {
+        Progress.Instance.DataLoaded += OnDataLoaded;
+    }
+
     private void Start()
+    {
+        if (Progress.Instance.PlayerData != default)
+            OnDataLoaded();
+    }
+
+    private void OnDisable()
+    {
+        Progress.Instance.DataLoaded -= OnDataLoaded;
+    }
+
+    private void OnDataLoaded()
     {
         ItemInfo info = _holder.GetItemInfo(Progress.Instance.PlayerData.CurrentSkinIndex);
 
