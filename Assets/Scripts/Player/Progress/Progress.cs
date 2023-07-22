@@ -1,10 +1,14 @@
 using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine.Events;
 
 public class PlayerData
 {
     public int MaxRange;
     public int Diamonds;
+
+    public bool[] AreSkinsBuåód = new bool[6];
+    public int CurrentSkinIndex;
 }
 
 public class Progress : MonoBehaviour
@@ -16,6 +20,8 @@ public class Progress : MonoBehaviour
     public static Progress Instance;
 
     public int WorldRecordRange => _topRangeInWorld;
+
+    public event UnityAction DataLoaded;
 
     private void Awake()
     {
@@ -42,6 +48,8 @@ public class Progress : MonoBehaviour
         var data = JsonUtility.FromJson<PlayerData>(json);
 
         Instance.PlayerData = data;
+
+        Instance.DataLoaded?.Invoke();
     }
 
     public static void SetWorldRecord(int value)

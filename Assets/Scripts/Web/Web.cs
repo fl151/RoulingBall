@@ -1,10 +1,13 @@
 using Agava.WebUtility;
 using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine.Events;
 
 public class Web : MonoBehaviour
 {
     public static Web Instance;
+
+    public event UnityAction PlayerAuth;
 
     private void OnEnable()
     {
@@ -56,6 +59,8 @@ public class Web : MonoBehaviour
 
     private void OnPlayerAuth()
     {
+        PlayerAuth?.Invoke();
+
         PlayerAccount.RequestPersonalProfileDataPermission();
 
         PlayerAccount.GetCloudSaveData((data) => Progress.SetDataFromJSON(data));

@@ -16,13 +16,11 @@ public class DefaultGameResultCanvas : MonoBehaviour
 
     private void OnEnable()
     {
-        _playAgainButton.onClick.AddListener(OnButtonClicked);
+        _playAgainButton.onClick.AddListener(OnButtonPlayAgainClicked);
     }
 
     private void Start()
     {
-        _diamondsCount = GetComponentInChildren<DiamondsCount>().GetComponent<TMP_Text>();
-
         _diamondsCount.text = Progress.Instance.PlayerData.Diamonds.ToString();
 
         _range.text = _playerRange.CurrentRange.ToString();      
@@ -30,10 +28,10 @@ public class DefaultGameResultCanvas : MonoBehaviour
 
     private void OnDisable()
     {
-        _playAgainButton.onClick.RemoveListener(OnButtonClicked);
+        _playAgainButton.onClick.RemoveListener(OnButtonPlayAgainClicked);
     }
 
-    private void OnButtonClicked()
+    private void OnButtonPlayAgainClicked()
     {
         if (Random.Range(0, 1) <= _adChance)
             InterstitialAd.Show();

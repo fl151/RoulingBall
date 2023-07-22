@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b0e58ffeade2914392a2c4e2ae7a10f, type: 3}
+  m_Name: Glass
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 76e7e0dc0b8e29d43b3ad6e80a150c87, type: 3}
+  _price: 0
+  _prefab: {fileID: -3633064780586188671, guid: fb075d40b43a39244bf4861fdcd2a234, type: 3}
