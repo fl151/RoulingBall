@@ -14,11 +14,6 @@ public class ButtonShop : MonoBehaviour
     private void Awake()
     {
         _button = GetComponent<Button>();
-
-        if (PlayerAccount.IsAuthorized == false)
-        {
-            _button.enabled = false;
-        }
     }
 
     private void OnEnable()

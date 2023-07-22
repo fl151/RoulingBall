@@ -3,21 +3,20 @@ using UnityEngine.UI;
 using Agava.YandexGames;
 
 [RequireComponent(typeof(Button))]
-public class LeaderboardButton : MonoBehaviour
+public class ButtonAddDimonds : MonoBehaviour
 {
-    [SerializeField] private GameObject _defaultCanvas;
-    [SerializeField] private GameObject _leaderboardCanvas;
+    [SerializeField] private GameObject _windowAddDimonds;
     [SerializeField] private GameObject _warringAccountProblem;
+    [SerializeField] private bool _makeActive;
+    
 
     private Button _button;
 
-    private void Awake()
-    {
-        _button = GetComponent<Button>();
-    }
-
     private void OnEnable()
     {
+        if (_button == null)
+            _button = GetComponent<Button>();
+
         _button.onClick.AddListener(OnButtonClick);
     }
 
@@ -29,13 +28,9 @@ public class LeaderboardButton : MonoBehaviour
     private void OnButtonClick()
     {
         if (PlayerAccount.IsAuthorized)
-        {
-            _leaderboardCanvas.SetActive(true);
-            _defaultCanvas.SetActive(false);
-        }
+            _windowAddDimonds.SetActive(_makeActive);
         else
-        {
             _warringAccountProblem.SetActive(true);
-        }
     }
+
 }

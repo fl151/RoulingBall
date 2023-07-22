@@ -13,7 +13,17 @@ public class FillerLeaderboardPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        if(_panelParent.childCount == 0)
+        Web.Instance.PlayerAuth += OnPlayerAuth;
+    }
+
+    private void OnDisable()
+    {
+        Web.Instance.PlayerAuth -= OnPlayerAuth;
+    }
+
+    private void OnPlayerAuth()
+    {
+        if (_panelParent.childCount == 0)
             LoadEntries();
 
         Leaderboard.GetPlayerEntry(_maxRangeLeaderbordTitle, (response) =>

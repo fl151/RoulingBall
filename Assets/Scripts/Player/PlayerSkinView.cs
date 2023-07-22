@@ -14,8 +14,7 @@ public class PlayerSkinView : MonoBehaviour
 
     private void Start()
     {
-        if (Progress.Instance.PlayerData != default)
-            OnDataLoaded();
+        OnDataLoaded();
     }
 
     private void OnDisable()
@@ -26,6 +25,9 @@ public class PlayerSkinView : MonoBehaviour
     private void OnDataLoaded()
     {
         ItemInfo info = _holder.GetItemInfo(Progress.Instance.PlayerData.CurrentSkinIndex);
+
+        if (_currentSkin != null)
+            Destroy(_currentSkin);
 
         if (info != null)
             _currentSkin = Instantiate(info.Prefab.gameObject, gameObject.transform);

@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using TMPro;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private PlayerSkinView _playerSkinView;
     [SerializeField] private GameObject _errorView;
     [SerializeField] private TMP_Text _dimondsCount;
+    [SerializeField] private TMP_Text _textDimondsCountDefaultCanvas;
 
     [SerializeField] private SkinsHolder _skinHolder;
 
@@ -61,7 +63,22 @@ public class Shop : MonoBehaviour
         SetActive(item);
 
         Progress.Instance.PlayerData.CurrentSkinIndex = item.Index + 1;
-        Progress.SaveDataCloud();
+
+        if (PlayerAccount.IsAuthorized)
+            Progress.SaveDataCloud();
+    }
+
+    public void AddDimonds(int count)
+    {
+        if (count < 0)
+            return;
+
+        Progress.Instance.PlayerData.Diamonds += count;
+
+        if (PlayerAccount.IsAuthorized)
+            Progress.SaveDataCloud();
+
+        UpdateDimonds();
     }
 
     private void SetActive(ShopItem item)
@@ -72,12 +89,15 @@ public class Shop : MonoBehaviour
 
     private void UpdateDimonds()
     {
-        _dimondsCount.text = Progress.Instance.PlayerData.Diamonds.ToString();
+        string textCount = Progress.Instance.PlayerData.Diamonds.ToString();
+
+        _dimondsCount.text = textCount;
+        _textDimondsCountDefaultCanvas.text = textCount;
     }
 
     private void SetInactiveLast()
     {
-        if(_current != null)
+        if (_current != null)
             _current.GetComponent<ItemView>().SetInactive();
     }
 

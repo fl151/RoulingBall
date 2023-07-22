@@ -5,9 +5,6 @@ using UnityEngine;
 public class ErrorText : MonoBehaviour
 {
     private const float _delayafter = 0.5f;
-
-    [SerializeField] private TMP_Text _text;
-
     private Coroutine _coroutine;
 
     private void OnEnable()
