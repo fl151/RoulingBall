@@ -1,12 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Agava.YandexGames;
 
 [RequireComponent(typeof(Button))]
-public class ButtonAddDimonds : MonoBehaviour
+public class ButtonCloseAddDimonds : MonoBehaviour
 {
     [SerializeField] private GameObject _windowAddDimonds;
-    [SerializeField] private GameObject _warringAccountProblem; 
 
     private Button _button;
 
@@ -25,9 +23,6 @@ public class ButtonAddDimonds : MonoBehaviour
 
     private void OnButtonClick()
     {
-        if (PlayerAccount.IsAuthorized)
-            _windowAddDimonds.SetActive(true);
-        else
-            _warringAccountProblem.SetActive(true);
+        _windowAddDimonds.SetActive(false);
     }
 }
