@@ -5,6 +5,14 @@ public class FillerLeaderboardPanel : MonoBehaviour
 {
     private const string _maxRangeLeaderbordTitle = "LongestRange";
 
+    private const string _ruLang = "ru";
+    private const string _trLang = "tr";
+    private const string _enLang = "en";
+
+    private const string _ruText = "Вы";
+    private const string _enText = "You";
+    private const string _trText = "Siz";
+
     [SerializeField] private GameObject _prefabPlayerInfo;
     [SerializeField] private Transform _panelParent;
     [SerializeField] private FillerEntryInfo _playerEntry;
@@ -31,7 +39,7 @@ public class FillerLeaderboardPanel : MonoBehaviour
         Leaderboard.GetPlayerEntry(_maxRangeLeaderbordTitle, (response) =>
         {
             if (response != null)
-                _playerEntry.Fill("You", response.score, response.player.profilePicture);
+                _playerEntry.Fill(GetTextCurrentLanguage(), response.score, response.player.profilePicture);
             else
                 _playerEntry.gameObject.SetActive(false);
         });
@@ -62,5 +70,27 @@ public class FillerLeaderboardPanel : MonoBehaviour
             else
                 entryInfo.SetFillColor(_colorsFill[^1]);
         }
+    }
+
+    private string GetTextCurrentLanguage()
+    {
+        string nameText = "";
+
+        switch (YandexGamesSdk.Environment.browser.lang)
+        {
+            case _ruLang:
+                nameText = _ruText;
+                break;
+
+            case _enLang:
+                nameText = _enText;
+                break;
+
+            case _trLang:
+                nameText = _trText;
+                break;
+        }
+
+        return nameText;
     }
 }

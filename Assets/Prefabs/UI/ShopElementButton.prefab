@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 3441216030506837595}
   - component: {fileID: 3748651579647496682}
   - component: {fileID: 1841798157728464116}
+  - component: {fileID: 7147311596474696258}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -675,3 +676,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7147311596474696258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7180077101523007825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81101400bc694a4290dcfed618af749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ruText: "\u041A\u0443\u043F\u0438\u0442\u044C"
+  _enText: Buy
+  _trText: Almak
