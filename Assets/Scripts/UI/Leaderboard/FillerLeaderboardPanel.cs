@@ -11,14 +11,16 @@ public class FillerLeaderboardPanel : MonoBehaviour
 
     [SerializeField] private Color[] _colorsFill;
 
+    [SerializeField] private Web _web;
+
     private void OnEnable()
     {
-        Web.Instance.PlayerAuth += OnPlayerAuth;
+        _web.PlayerAuth += OnPlayerAuth;
     }
 
     private void OnDisable()
     {
-        Web.Instance.PlayerAuth -= OnPlayerAuth;
+        _web.PlayerAuth -= OnPlayerAuth;
     }
 
     private void OnPlayerAuth()

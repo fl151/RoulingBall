@@ -5,8 +5,6 @@ using UnityEngine.Events;
 
 public class Web : MonoBehaviour
 {
-    public static Web Instance;
-
     public event UnityAction PlayerAuth;
 
     private void OnEnable()
@@ -14,19 +12,9 @@ public class Web : MonoBehaviour
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
     }
 
-    private void Awake()
+    private void Start()
     {
-        if (Instance == null)
-        {
-            transform.parent = null;
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-            OnYandexInitialized();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        AuthAccount();
     }
 
     private void OnDisable()
@@ -38,11 +26,6 @@ public class Web : MonoBehaviour
     {
         AudioListener.pause = inBackground;
         AudioListener.volume = inBackground ? 0f : 1f;
-    }
-
-    private void OnYandexInitialized()
-    {
-        AuthAccount();
     }
 
     private void AuthAccount()
@@ -59,10 +42,10 @@ public class Web : MonoBehaviour
 
     private void OnPlayerAuth()
     {
-        PlayerAuth?.Invoke();
-
         PlayerAccount.RequestPersonalProfileDataPermission();
 
         PlayerAccount.GetCloudSaveData((data) => Progress.SetDataFromJSON(data));
+
+        PlayerAuth?.Invoke();
     } 
 }
