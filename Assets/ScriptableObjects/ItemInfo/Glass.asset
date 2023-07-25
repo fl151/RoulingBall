@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Glass
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 76e7e0dc0b8e29d43b3ad6e80a150c87, type: 3}
-  _price: 0
+  _price: 150
   _prefab: {fileID: -3633064780586188671, guid: fb075d40b43a39244bf4861fdcd2a234, type: 3}

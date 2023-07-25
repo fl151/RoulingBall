@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Blackhole
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: d1495b506e590a14c824d9ed0bdba5b0, type: 3}
-  _price: 0
+  _price: 750
   _prefab: {fileID: -6444731833094075277, guid: 3512f3dcd4783fa4db3cfaaa13c79f87, type: 3}

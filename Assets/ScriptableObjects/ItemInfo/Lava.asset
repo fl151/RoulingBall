@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Lava
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: ff715a6f0e672ef4d91134078da3d631, type: 3}
-  _price: 0
+  _price: 500
   _prefab: {fileID: 9089316484103971539, guid: 627439b4261af3b4b93d18644153e18c, type: 3}
