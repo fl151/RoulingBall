@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class FillerEntryInfo : MonoBehaviour
 {
-    private const string _playerText = "Player";
+    private const string _ruPlayerText = "Игрок";
+    private const string _enPlayerText = "Player";
+    private const string _trPlayerText = "Oyuncu";
 
     [SerializeField] private TMP_Text _name;
     [SerializeField] private TMP_Text _score;
@@ -29,7 +31,7 @@ public class FillerEntryInfo : MonoBehaviour
     public void Fill(string name, int score, string pictureURL)
     {
         if (string.IsNullOrEmpty(name))
-            _name.text = _playerText;
+            _name.text = GetCurrentText();
         else
             _name.text = name;
 
@@ -44,6 +46,14 @@ public class FillerEntryInfo : MonoBehaviour
         _fill.color = color;
     }
 
+    public void SetName(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+            _name.text = GetCurrentText();
+        else
+            _name.text = name;
+    }
+
     private IEnumerator LoadImage(string url)
     {
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
@@ -54,5 +64,30 @@ public class FillerEntryInfo : MonoBehaviour
             Debug.Log(request.error);
         else
             _icon.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+    }
+
+    private string GetCurrentText()
+    {
+        string text = "";
+
+        switch (Progress.Instance.PlayerData.Language)
+        {
+            case Language.Ru:
+                text = _ruPlayerText;
+                break;
+
+            case Language.En:
+                text = _enPlayerText;
+                break;
+
+            case Language.Tr:
+                text = _trPlayerText;
+                break;
+
+            default:
+                break;
+        }
+
+        return text;
     }
 }

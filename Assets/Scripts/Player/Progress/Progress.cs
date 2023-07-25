@@ -2,6 +2,13 @@ using UnityEngine;
 using Agava.YandexGames;
 using UnityEngine.Events;
 
+public enum Language { 
+    Null,
+    Ru,
+    En,
+    Tr
+}
+
 public class PlayerData
 {
     public int MaxRange;
@@ -9,6 +16,8 @@ public class PlayerData
 
     public bool[] AreSkinsBuåód = new bool[6];
     public int CurrentSkinIndex;
+
+    public Language Language;
 }
 
 public class Progress : MonoBehaviour

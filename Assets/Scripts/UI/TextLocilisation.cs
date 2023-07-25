@@ -5,13 +5,11 @@ using Agava.YandexGames;
 [RequireComponent(typeof(TMP_Text))]
 public class TextLocilisation : MonoBehaviour
 {
-    private const string _ruLang = "ru";
-    private const string _trLang = "tr";
-    private const string _enLang = "en";
-
     [SerializeField] private string _ruText;
     [SerializeField] private string _enText;
     [SerializeField] private string _trText;
+
+    [SerializeField] private LanguageLocalisation _languageLocalisation;
 
     private TMP_Text _text;
 
@@ -20,19 +18,38 @@ public class TextLocilisation : MonoBehaviour
         _text = GetComponent<TMP_Text>();
     }
 
+    private void OnEnable()
+    {
+        _languageLocalisation.LanguageChanged += OnLanguageChanged;
+    }
+
     private void Start()
     {
-        switch(YandexGamesSdk.Environment.browser.lang){
-            case _ruLang:
+        OnLanguageChanged();
+    }
+
+    private void OnDisable()
+    {
+        _languageLocalisation.LanguageChanged -= OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged()
+    {
+        switch (Progress.Instance.PlayerData.Language)
+        {
+            case Language.Ru:
                 _text.text = _ruText;
                 break;
 
-            case _enLang:
+            case Language.En:
                 _text.text = _enText;
                 break;
 
-            case _trLang:
+            case Language.Tr:
                 _text.text = _trText;
+                break;
+
+            default:
                 break;
         }
     }

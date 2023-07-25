@@ -44,8 +44,10 @@ public class Web : MonoBehaviour
     {
         PlayerAccount.RequestPersonalProfileDataPermission();
 
-        PlayerAccount.GetCloudSaveData((data) => Progress.SetDataFromJSON(data));
-
-        PlayerAuth?.Invoke();
+        PlayerAccount.GetCloudSaveData((data) => 
+        { 
+            Progress.SetDataFromJSON(data);
+            PlayerAuth?.Invoke();
+        });
     } 
 }

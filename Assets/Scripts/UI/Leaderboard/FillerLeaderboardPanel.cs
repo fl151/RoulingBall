@@ -5,10 +5,6 @@ public class FillerLeaderboardPanel : MonoBehaviour
 {
     private const string _maxRangeLeaderbordTitle = "LongestRange";
 
-    private const string _ruLang = "ru";
-    private const string _trLang = "tr";
-    private const string _enLang = "en";
-
     private const string _ruText = "Вы";
     private const string _enText = "You";
     private const string _trText = "Siz";
@@ -19,15 +15,18 @@ public class FillerLeaderboardPanel : MonoBehaviour
 
     [SerializeField] private Color[] _colorsFill;
 
+    [SerializeField] LanguageLocalisation _languageLocalisation;
     [SerializeField] private Web _web;
 
     private void OnEnable()
     {
         _web.PlayerAuth += OnPlayerAuth;
+        _languageLocalisation.LanguageChanged += OnLanguageChanged;
     }
 
     private void OnDisable()
     {
+        _languageLocalisation.LanguageChanged -= OnLanguageChanged;
         _web.PlayerAuth -= OnPlayerAuth;
     }
 
@@ -52,12 +51,14 @@ public class FillerLeaderboardPanel : MonoBehaviour
             Progress.SetWorldRecord(response.entries[0].score);
 
             SetEntryes(response);
-        });
+        }, null, 5);
     }
 
     private void SetEntryes(LeaderboardGetEntriesResponse response)
     {
-        for (int i = 0; i < response.entries.Length; i++)
+        int entryesCount = Mathf.Clamp(response.entries.Length, 0, 5);
+
+        for (int i = 0; i < entryesCount; i++)
         {
             LeaderboardEntryResponse entry = response.entries[i];
 
@@ -72,21 +73,26 @@ public class FillerLeaderboardPanel : MonoBehaviour
         }
     }
 
+    private void OnLanguageChanged()
+    {
+        _playerEntry.SetName(GetTextCurrentLanguage());
+    }
+
     private string GetTextCurrentLanguage()
     {
         string nameText = "";
 
-        switch (YandexGamesSdk.Environment.browser.lang)
+        switch (Progress.Instance.PlayerData.Language)
         {
-            case _ruLang:
+            case Language.Ru:
                 nameText = _ruText;
                 break;
 
-            case _enLang:
+            case Language.En:
                 nameText = _enText;
                 break;
 
-            case _trLang:
+            case Language.Tr:
                 nameText = _trText;
                 break;
         }
