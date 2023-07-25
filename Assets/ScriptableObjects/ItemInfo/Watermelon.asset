@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Watermelon
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 2263b7ace51c8b8458703bc37eb7a718, type: 3}
-  _price: 0
+  _price: 50
   _prefab: {fileID: 6664185594620343753, guid: c040f1ea2ddce0941967ea8e94facc4f, type: 3}

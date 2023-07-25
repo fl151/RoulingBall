@@ -62,9 +62,6 @@ public class Results : MonoBehaviour
             Progress.SetWorldRecord(value);
 
         if (PlayerAccount.IsAuthorized)
-        {
             Leaderboard.SetScore(_maxRangeLeaderbordTitle, value);
-
-        }
     }
 }

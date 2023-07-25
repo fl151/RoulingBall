@@ -64,8 +64,7 @@ public class Shop : MonoBehaviour
 
         Progress.Instance.PlayerData.CurrentSkinIndex = item.Index + 1;
 
-        if (PlayerAccount.IsAuthorized)
-            Progress.SaveDataCloud();
+        Progress.SaveDataCloud();
     }
 
     public void AddDimonds(int count)
@@ -75,8 +74,7 @@ public class Shop : MonoBehaviour
 
         Progress.Instance.PlayerData.Diamonds += count;
 
-        if (PlayerAccount.IsAuthorized)
-            Progress.SaveDataCloud();
+        Progress.SaveDataCloud();
 
         UpdateDimonds();
     }

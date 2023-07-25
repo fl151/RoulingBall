@@ -7,6 +7,22 @@ public class Web : MonoBehaviour
 {
     public event UnityAction PlayerAuth;
 
+    public static Web Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            transform.parent = null;
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnEnable()
     {
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
@@ -44,8 +60,10 @@ public class Web : MonoBehaviour
     {
         PlayerAccount.RequestPersonalProfileDataPermission();
 
-        PlayerAccount.GetCloudSaveData((data) => Progress.SetDataFromJSON(data));
-
-        PlayerAuth?.Invoke();
+        PlayerAccount.GetCloudSaveData((data) => 
+        { 
+            Progress.SetDataFromJSON(data);
+            PlayerAuth?.Invoke();
+        });
     } 
 }
