@@ -47,6 +47,11 @@ public class ShopItem : MonoBehaviour
         }
     }
 
+    public void SetIsBuyed()
+    {
+        _isBuyed = true;
+    }
+
     private void OnButtonClick()
     {
         if (_isBuyed)

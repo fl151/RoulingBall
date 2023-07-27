@@ -29,6 +29,8 @@ public class ButtonShop : MonoBehaviour
     private void OnButtonClick()
     {
         _shopCanvas.SetActive(true);
+        _shopCanvas.GetComponentInChildren<CloseShopButton>().SetDefaultCanvas(_defaultCanvas);
+
         _defaultCanvas.SetActive(false);
     }
 }

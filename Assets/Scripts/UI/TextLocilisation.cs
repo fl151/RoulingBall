@@ -20,6 +20,8 @@ public class TextLocilisation : MonoBehaviour
 
     private void OnEnable()
     {
+        OnLanguageChanged();
+
         _languageLocalisation.LanguageChanged += OnLanguageChanged;
     }
 

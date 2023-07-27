@@ -26,6 +26,7 @@ public class Shop : MonoBehaviour
             if (Progress.Instance.PlayerData.AreSkinsBuåód[i])
             {
                 items[i].GetComponent<ItemView>().Buy();
+                items[i].SetIsBuyed();
 
                 if (Progress.Instance.PlayerData.CurrentSkinIndex - 1 == i)
                 {

@@ -31,6 +31,7 @@ public class LeaderboardButton : MonoBehaviour
         if (PlayerAccount.IsAuthorized)
         {
             _leaderboardCanvas.SetActive(true);
+            _leaderboardCanvas.GetComponentInChildren<CloseLeaderboardButton>().SetDefaultCanvas(_defaultCanvas);
             _defaultCanvas.SetActive(false);
         }
         else

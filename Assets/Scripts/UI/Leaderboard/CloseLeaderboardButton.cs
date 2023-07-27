@@ -4,8 +4,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class CloseLeaderboardButton : MonoBehaviour
 {
-    [SerializeField] private GameObject _defaultCanvas;
     [SerializeField] private GameObject _leaderboardCanvas;
+    private GameObject _defaultCanvas;
 
     private Button _button;
 
@@ -22,6 +22,11 @@ public class CloseLeaderboardButton : MonoBehaviour
     private void OnDisable()
     {
         _button.onClick.RemoveListener(OnButtonClick);
+    }
+
+    public void SetDefaultCanvas(GameObject defaultCanvas)
+    {
+        _defaultCanvas = defaultCanvas;
     }
 
     private void OnButtonClick()

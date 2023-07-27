@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.Events;
@@ -43,6 +44,10 @@ public class LanguageLocalisation : MonoBehaviour
                     ChangeLanguage(Language.Tr);
                     break;
             }
+        }
+        else
+        {
+            ChangeLanguage(Progress.Instance.PlayerData.Language);
         }
     }
 
