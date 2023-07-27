@@ -42,6 +42,8 @@ public class Web : MonoBehaviour
     {
         AudioListener.pause = inBackground;
         AudioListener.volume = inBackground ? 0f : 1f;
+
+        Time.timeScale = inBackground ? 0f : 1f;
     }
 
     private void AuthAccount()

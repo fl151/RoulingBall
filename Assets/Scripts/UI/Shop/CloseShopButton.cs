@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CloseShopButton : MonoBehaviour
 {
     [SerializeField] private GameObject _shopCanvas;
-    [SerializeField] private GameObject _defaultCanvas;
+    private GameObject _defaultCanvas;
 
     private Button _button;
 
@@ -20,6 +20,11 @@ public class CloseShopButton : MonoBehaviour
     private void OnDisable()
     {
         _button.onClick.AddListener(OnButtonClick);
+    }
+
+    public void SetDefaultCanvas(GameObject defaultCanvas)
+    {
+        _defaultCanvas = defaultCanvas;
     }
 
     private void OnButtonClick()
