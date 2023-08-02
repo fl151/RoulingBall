@@ -24,6 +24,12 @@ public class FillerLeaderboardPanel : MonoBehaviour
         _languageLocalisation.LanguageChanged += OnLanguageChanged;
     }
 
+    private void Start()
+    {
+        if (PlayerAccount.IsAuthorized)
+            OnPlayerAuth();
+    }
+
     private void OnDisable()
     {
         _languageLocalisation.LanguageChanged -= OnLanguageChanged;
