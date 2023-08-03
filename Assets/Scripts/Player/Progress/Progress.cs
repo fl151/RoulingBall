@@ -2,7 +2,8 @@ using UnityEngine;
 using Agava.YandexGames;
 using UnityEngine.Events;
 
-public enum Language { 
+public enum Language
+{
     Null,
     Ru,
     En,
@@ -11,20 +12,20 @@ public enum Language {
 
 public class PlayerData
 {
-    public int MaxRange;
-    public int Diamonds;
+    public int MaxRange = 0;
+    public int Diamonds = 0;
 
-    public bool[] AreSkinsBuåód = new bool[6];
-    public int CurrentSkinIndex;
+    public bool[] AreSkinsBuåód = { false, false, false, false, false, false };
+    public int CurrentSkinIndex = 0;
 
-    public Language Language;
+    public Language Language = Language.Null;
 }
 
 public class Progress : MonoBehaviour
 {
     private int _topRangeInWorld;
 
-    public PlayerData PlayerData;
+    public PlayerData PlayerData = new PlayerData();
 
     public static Progress Instance;
 
@@ -34,7 +35,7 @@ public class Progress : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             transform.parent = null;
             DontDestroyOnLoad(gameObject);

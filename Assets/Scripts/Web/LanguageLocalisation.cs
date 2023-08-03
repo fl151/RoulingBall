@@ -11,6 +11,24 @@ public class LanguageLocalisation : MonoBehaviour
 
     public event UnityAction LanguageChanged;
 
+    private void Awake()
+    {
+        switch (YandexGamesSdk.Environment.browser.lang)
+        {
+            case _ruLang:
+                ChangeLanguage(Language.Ru);
+                break;
+
+            case _enLang:
+                ChangeLanguage(Language.En);
+                break;
+
+            case _trLang:
+                ChangeLanguage(Language.Tr);
+                break;
+        }
+    }
+
     private void OnEnable()
     {
         Progress.Instance.DataLoaded += OnDataLoaded;
@@ -44,6 +62,8 @@ public class LanguageLocalisation : MonoBehaviour
                     ChangeLanguage(Language.Tr);
                     break;
             }
+
+            Progress.SaveDataCloud();
         }
         else
         {
@@ -54,8 +74,6 @@ public class LanguageLocalisation : MonoBehaviour
     private void ChangeLanguage(Language language)
     {
         Progress.Instance.PlayerData.Language = language;
-
-        Progress.SaveDataCloud();
 
         LanguageChanged?.Invoke();
     }

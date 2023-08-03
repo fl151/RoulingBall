@@ -13,10 +13,13 @@ public class Shop : MonoBehaviour
 
     private ShopItem _current;
 
-    private void Start()
+    private void OnEnable()
     {
         UpdateDimonds();
+    }
 
+    private void Start()
+    {
         var items = GetComponentsInChildren<ShopItem>(true);
 
         for (int i = 0; i < items.Length; i++)
