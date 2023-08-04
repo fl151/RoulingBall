@@ -32,6 +32,7 @@ public class Progress : MonoBehaviour
     public int WorldRecordRange => _topRangeInWorld;
 
     public event UnityAction DataLoaded;
+    public event UnityAction<PlayerData> NeedAsk;
 
     private void Awake()
     {
@@ -51,19 +52,39 @@ public class Progress : MonoBehaviour
     {
         if (PlayerAccount.IsAuthorized)
             PlayerAccount.SetCloudSaveData(JsonUtility.ToJson(Instance.PlayerData));
+
+        PlayerPrefs.SetString("data", JsonUtility.ToJson(Instance.PlayerData));
+        PlayerPrefs.Save();
     }
 
     public static void SetDataFromJSON(string json)
     {
-        var data = JsonUtility.FromJson<PlayerData>(json);
+        var dataCloud = JsonUtility.FromJson<PlayerData>(json);
 
-        Instance.PlayerData = data;
+        var dataPrefs = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("data"));
 
-        Instance.DataLoaded?.Invoke();
+        if (dataCloud == dataPrefs)
+            return;
+        else if (dataPrefs == default)
+            SetData(dataCloud);
+        else
+            AskUserAboutProgress(dataCloud);
     }
 
     public static void SetWorldRecord(int value)
     {
         Instance._topRangeInWorld = value;
+    }
+
+    public static void SetData(PlayerData data)
+    {
+        Instance.PlayerData = data;
+        Instance.DataLoaded?.Invoke();
+        SaveDataCloud();
+    }
+
+    private static void AskUserAboutProgress(PlayerData dataCloud)
+    {
+        Instance.NeedAsk?.Invoke(dataCloud);
     }
 }
