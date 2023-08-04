@@ -13,20 +13,7 @@ public class LanguageLocalisation : MonoBehaviour
 
     private void Awake()
     {
-        switch (YandexGamesSdk.Environment.browser.lang)
-        {
-            case _ruLang:
-                ChangeLanguage(Language.Ru);
-                break;
-
-            case _enLang:
-                ChangeLanguage(Language.En);
-                break;
-
-            case _trLang:
-                ChangeLanguage(Language.Tr);
-                break;
-        }
+        OnDataLoaded();
     }
 
     private void OnEnable()
@@ -62,8 +49,6 @@ public class LanguageLocalisation : MonoBehaviour
                     ChangeLanguage(Language.Tr);
                     break;
             }
-
-            Progress.SaveDataCloud();
         }
         else
         {
