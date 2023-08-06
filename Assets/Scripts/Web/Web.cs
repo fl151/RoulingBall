@@ -30,12 +30,27 @@ public class Web : MonoBehaviour
 
     private void Start()
     {
-        AuthAccount();
+        if(PlayerAccount.IsAuthorized == false)
+            Progress.SetPrefsData();
+        else
+            OnPlayerAuth();
     }
 
     private void OnDisable()
     {
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
+    }
+
+    public static void AuthAccount()
+    {
+        if (PlayerAccount.IsAuthorized == false)
+        {
+            PlayerAccount.Authorize(Instance.OnPlayerAuth);
+        }
+        else
+        {
+            Instance.OnPlayerAuth();
+        }
     }
 
     private void OnInBackgroundChange(bool inBackground)
@@ -44,18 +59,6 @@ public class Web : MonoBehaviour
         AudioListener.volume = inBackground ? 0f : 1f;
 
         Time.timeScale = inBackground ? 0f : 1f;
-    }
-
-    private void AuthAccount()
-    {
-        if (PlayerAccount.IsAuthorized == false)
-        {
-            PlayerAccount.Authorize(OnPlayerAuth);
-        }
-        else
-        {
-            OnPlayerAuth();
-        }
     }
 
     private void OnPlayerAuth()
@@ -67,5 +70,5 @@ public class Web : MonoBehaviour
             Progress.SetDataFromJSON(data);
             PlayerAuth?.Invoke();
         });
-    } 
+    }
 }

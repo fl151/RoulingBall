@@ -50,11 +50,14 @@ public class Progress : MonoBehaviour
 
     public static void SaveDataCloud()
     {
-        if (PlayerAccount.IsAuthorized)
-            PlayerAccount.SetCloudSaveData(JsonUtility.ToJson(Instance.PlayerData));
+        string json = JsonUtility.ToJson(Instance.PlayerData);
 
-        PlayerPrefs.SetString("data", JsonUtility.ToJson(Instance.PlayerData));
-        PlayerPrefs.Save();
+        if (PlayerAccount.IsAuthorized)
+            PlayerAccount.SetCloudSaveData(json);
+
+        PlayerPrefs.SetString("data", json);
+
+        Debug.Log("save");
     }
 
     public static void SetDataFromJSON(string json)
@@ -63,12 +66,19 @@ public class Progress : MonoBehaviour
 
         var dataPrefs = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("data"));
 
-        if (dataCloud == dataPrefs)
-            return;
+        if (AreDatasEquals(dataCloud, dataPrefs))
+            SetData(dataPrefs);  
         else if (dataPrefs == default)
             SetData(dataCloud);
         else
             AskUserAboutProgress(dataCloud);
+    }
+
+    public static void SetPrefsData()
+    {
+        var dataPrefs = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("data"));
+
+        SetData(dataPrefs);
     }
 
     public static void SetWorldRecord(int value)
@@ -80,11 +90,37 @@ public class Progress : MonoBehaviour
     {
         Instance.PlayerData = data;
         Instance.DataLoaded?.Invoke();
+
+        Debug.Log("Set data");
+
         SaveDataCloud();
     }
 
     private static void AskUserAboutProgress(PlayerData dataCloud)
     {
         Instance.NeedAsk?.Invoke(dataCloud);
+    }
+
+    private static bool AreDatasEquals(PlayerData data1, PlayerData data2)
+    {
+        if (data1.Diamonds != data2.Diamonds)
+            return false;
+
+        if (data1.MaxRange != data2.MaxRange)
+            return false;
+
+        if (data1.Language != data2.Language)
+            return false;
+
+        if (data1.CurrentSkinIndex != data2.CurrentSkinIndex)
+            return false;
+
+        for (int i = 0; i < data1.AreSkinsBuåód.Length; i++)
+        {
+            if (data1.AreSkinsBuåód[i] != data2.AreSkinsBuåód[i])
+                return false;
+        }
+
+        return true;
     }
 }
