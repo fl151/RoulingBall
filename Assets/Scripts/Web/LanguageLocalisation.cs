@@ -29,6 +29,8 @@ public class LanguageLocalisation : MonoBehaviour
     public void SetLanguage(Language language)
     {
         ChangeLanguage(language);
+
+        Progress.SaveDataCloud();
     }
 
     private void OnDataLoaded()

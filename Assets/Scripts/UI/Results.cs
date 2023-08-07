@@ -29,26 +29,20 @@ public class Results : MonoBehaviour
 
         int range = _playerRange.CurrentRange;
 
-        if (PlayerAccount.IsAuthorized == false)
+
+        if (PlayerAccount.IsAuthorized && range > Progress.Instance.WorldRecordRange)
         {
-            _defaultCanvas.SetActive(true);
+            _worldRecordCanvas.SetActive(true);
+            SetNewRangeRecord(range);
+        }
+        else if (Progress.Instance.PlayerData.MaxRange < range)
+        {
+            _newRecordCanvas.SetActive(true);
+            SetNewRangeRecord(range);
         }
         else
         {
-            if (range > Progress.Instance.WorldRecordRange)
-            {
-                _worldRecordCanvas.SetActive(true);
-                SetNewRangeRecord(range);
-            }
-            else if (Progress.Instance.PlayerData.MaxRange < range)
-            {
-                _newRecordCanvas.SetActive(true);
-                SetNewRangeRecord(range);
-            }
-            else
-            {
-                _defaultCanvas.SetActive(true);
-            }
+            _defaultCanvas.SetActive(true);
         }
 
         Progress.SaveDataCloud();
