@@ -7,6 +7,7 @@ public class LeaderboardButton : MonoBehaviour
 {
     [SerializeField] private GameObject _defaultCanvas;
     [SerializeField] private GameObject _leaderboardCanvas;
+    [SerializeField] private GameObject _loginAskCanvas;
 
     private Button _button;
 
@@ -35,7 +36,7 @@ public class LeaderboardButton : MonoBehaviour
         }
         else
         {
-            Web.AuthAccount();
+            _loginAskCanvas.SetActive(true);
         }
     }
 }

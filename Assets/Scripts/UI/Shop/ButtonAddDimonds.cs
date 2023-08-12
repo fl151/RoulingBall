@@ -6,6 +6,7 @@ using Agava.YandexGames;
 public class ButtonAddDimonds : MonoBehaviour
 {
     [SerializeField] private GameObject _windowAddDimonds;
+    [SerializeField] private GameObject _loginAskCanvas;
 
     private Button _button;
 
@@ -27,6 +28,6 @@ public class ButtonAddDimonds : MonoBehaviour
         if (PlayerAccount.IsAuthorized)
             _windowAddDimonds.SetActive(true);
         else
-            Web.AuthAccount();
+            _loginAskCanvas.SetActive(true);
     }
 }
