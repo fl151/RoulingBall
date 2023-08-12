@@ -34,13 +34,30 @@ public class ButtonPlayVideo : MonoBehaviour
 
     private void OnButtonClick()
     {
-        VideoAd.Show(null, OnRewardedCallback);
+        VideoAd.Show(OnOpenCallback, OnRewardedCallback, OnCloseCallback, OnErrorCallback);
 
         _windowAddDimonds.SetActive(false);    
+    }
+
+    private void OnOpenCallback()
+    {
+        Time.timeScale = 0;
     }
 
     private void OnRewardedCallback()
     {
         _shop.AddDimonds(_countDimonds);
+
+        Time.timeScale = 1;
+    }
+
+    private void OnCloseCallback()
+    {
+        Time.timeScale = 1;
+    }
+
+    private void OnErrorCallback(string error)
+    {
+        Time.timeScale = 1;
     }
 }

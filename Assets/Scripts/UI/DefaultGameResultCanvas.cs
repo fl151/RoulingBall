@@ -23,7 +23,7 @@ public class DefaultGameResultCanvas : MonoBehaviour
     {
         _diamondsCount.text = Progress.Instance.PlayerData.Diamonds.ToString();
 
-        _range.text = _playerRange.CurrentRange.ToString();      
+        _range.text = _playerRange.CurrentRange.ToString();
     }
 
     private void OnDisable()
@@ -34,7 +34,34 @@ public class DefaultGameResultCanvas : MonoBehaviour
     private void OnButtonPlayAgainClicked()
     {
         if (Random.Range(0, 1) <= _adChance)
-            InterstitialAd.Show();
+            InterstitialAd.Show(OnOpenCallback, OnCloseCallback, OnErrorCallback, OnOfflineCallback);
+        else
+            SceneManager.LoadScene(_mainSceneIndex);
+    }
+
+    private void OnOpenCallback()
+    {
+        Time.timeScale = 0;
+    }
+
+    private void OnCloseCallback(bool flag)
+    {
+        LoadNextScene();
+    }
+
+    private void OnErrorCallback(string error)
+    {
+        LoadNextScene();
+    }
+
+    private void OnOfflineCallback()
+    {
+        LoadNextScene();
+    }
+
+    private void LoadNextScene()
+    {
+        Time.timeScale = 1;
 
         SceneManager.LoadScene(_mainSceneIndex);
     }
