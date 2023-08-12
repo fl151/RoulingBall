@@ -27,7 +27,7 @@ public class Progress : MonoBehaviour
 
     private int _topRangeInWorld;
 
-    public PlayerData PlayerData = new PlayerData();
+    public PlayerData PlayerData;
 
     public static Progress Instance;
 
@@ -58,8 +58,7 @@ public class Progress : MonoBehaviour
             PlayerAccount.SetCloudSaveData(json);
 
         PlayerPrefs.SetString(_dataPrefsName, json);
-
-        Debug.Log($"save\n{Instance.PlayerData.MaxRange}");
+        PlayerPrefs.Save();
     }
 
     public static void SetDataFromJSON(string json)
@@ -69,10 +68,7 @@ public class Progress : MonoBehaviour
         var dataPrefs = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString(_dataPrefsName));
 
         if (AreDatasEquals(dataCloud, dataPrefs))
-        {
             SetData(dataPrefs);
-            Debug.Log($"ƒјты равны и установились префсы\n{dataPrefs.MaxRange}");
-        }
         else if (dataPrefs == default)
             SetData(dataCloud);
         else
@@ -81,11 +77,12 @@ public class Progress : MonoBehaviour
 
     public static void SetPrefsData()
     {
-        var dataPrefs = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString(_dataPrefsName));
+        PlayerData dataPrefs = new PlayerData();
+
+        if (PlayerPrefs.HasKey(_dataPrefsName))
+            dataPrefs = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString(_dataPrefsName));
 
         SetData(dataPrefs);
-
-        Debug.Log($"set prefs data\n{dataPrefs.MaxRange}");
     }
 
     public static void SetWorldRecord(int value)
@@ -97,8 +94,6 @@ public class Progress : MonoBehaviour
     {
         Instance.PlayerData = data;
         Instance.DataLoaded?.Invoke();
-
-        Debug.Log("Set data");
     }
 
     private static void AskUserAboutProgress(PlayerData dataCloud)

@@ -29,7 +29,6 @@ public class Results : MonoBehaviour
 
         int range = _playerRange.CurrentRange;
 
-
         if (PlayerAccount.IsAuthorized && range > Progress.Instance.WorldRecordRange)
         {
             _worldRecordCanvas.SetActive(true);
