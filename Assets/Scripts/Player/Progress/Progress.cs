@@ -23,9 +23,11 @@ public class PlayerData
 
 public class Progress : MonoBehaviour
 {
+    private const string _dataPrefsName = "data";
+
     private int _topRangeInWorld;
 
-    public PlayerData PlayerData = new PlayerData();
+    public PlayerData PlayerData;
 
     public static Progress Instance;
 
@@ -50,10 +52,12 @@ public class Progress : MonoBehaviour
 
     public static void SaveDataCloud()
     {
-        if (PlayerAccount.IsAuthorized)
-            PlayerAccount.SetCloudSaveData(JsonUtility.ToJson(Instance.PlayerData));
+        string json = JsonUtility.ToJson(Instance.PlayerData);
 
-        PlayerPrefs.SetString("data", JsonUtility.ToJson(Instance.PlayerData));
+        if (PlayerAccount.IsAuthorized)
+            PlayerAccount.SetCloudSaveData(json);
+
+        PlayerPrefs.SetString(_dataPrefsName, json);
         PlayerPrefs.Save();
     }
 
@@ -61,14 +65,24 @@ public class Progress : MonoBehaviour
     {
         var dataCloud = JsonUtility.FromJson<PlayerData>(json);
 
-        var dataPrefs = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("data"));
+        var dataPrefs = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString(_dataPrefsName));
 
-        if (dataCloud == dataPrefs)
-            return;
+        if (AreDatasEquals(dataCloud, dataPrefs))
+            SetData(dataPrefs);
         else if (dataPrefs == default)
             SetData(dataCloud);
         else
             AskUserAboutProgress(dataCloud);
+    }
+
+    public static void SetPrefsData()
+    {
+        PlayerData dataPrefs = new PlayerData();
+
+        if (PlayerPrefs.HasKey(_dataPrefsName))
+            dataPrefs = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString(_dataPrefsName));
+
+        SetData(dataPrefs);
     }
 
     public static void SetWorldRecord(int value)
@@ -80,11 +94,33 @@ public class Progress : MonoBehaviour
     {
         Instance.PlayerData = data;
         Instance.DataLoaded?.Invoke();
-        SaveDataCloud();
     }
 
     private static void AskUserAboutProgress(PlayerData dataCloud)
     {
         Instance.NeedAsk?.Invoke(dataCloud);
+    }
+
+    private static bool AreDatasEquals(PlayerData data1, PlayerData data2)
+    {
+        if (data1.Diamonds != data2.Diamonds)
+            return false;
+
+        if (data1.MaxRange != data2.MaxRange)
+            return false;
+
+        if (data1.Language != data2.Language)
+            return false;
+
+        if (data1.CurrentSkinIndex != data2.CurrentSkinIndex)
+            return false;
+
+        for (int i = 0; i < data1.AreSkinsBuåód.Length; i++)
+        {
+            if (data1.AreSkinsBuåód[i] != data2.AreSkinsBuåód[i])
+                return false;
+        }
+
+        return true;
     }
 }
